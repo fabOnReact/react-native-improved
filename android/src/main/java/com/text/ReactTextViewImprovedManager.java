@@ -17,10 +17,15 @@ import com.facebook.react.views.text.ReactTextViewManager;
 public class ReactTextViewImprovedManager
   extends ReactTextViewManager {
   // Need to rename to ReactTextViewImproved
-  public static final String NAME = "TextView";
+  public static final String NAME = "TextViewImproved";
 
   @Override
   public String getName() {
     return NAME;
+  }
+
+  @Override
+  public ReactTextView createViewInstance(ThemedReactContext context) {
+    return new ReactTextViewImproved(context);
   }
 }

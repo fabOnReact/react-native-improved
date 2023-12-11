@@ -1,14 +1,10 @@
 import * as React from 'react';
 
-import { StyleSheet, View } from 'react-native';
-import { TextView } from 'react-native-text';
+import { View, StyleSheet } from 'react-native';
+import { TextViewImproved } from 'react-native-text';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <TextView style={styles.box} />
-    </View>
-  );
+  return <TextViewImproved style={parentText} />;
 }
 
 const styles = StyleSheet.create({
@@ -17,10 +13,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
+  parentText: {
     width: 60,
     height: 60,
     marginVertical: 20,
     backgroundColor: 'red',
+  },
+  childText: {
+    color: 'blue',
   },
 });
