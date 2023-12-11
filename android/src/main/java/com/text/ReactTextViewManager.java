@@ -9,7 +9,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 
 @ReactModule(name = ReactTextViewManager.NAME)
-public class ReactTextViewManager extends TextViewManagerSpec<ReactTextView> {
+public class ReactTextViewManager extends TextViewManagerSpec<ReactTextViewImproved> {
 
   public static final String NAME = "TextView";
 
@@ -19,13 +19,13 @@ public class ReactTextViewManager extends TextViewManagerSpec<ReactTextView> {
   }
 
   @Override
-  public ReactTextView createViewInstance(ThemedReactContext context) {
-    return new ReactTextView(context);
+  public ReactTextViewImproved createViewInstance(ThemedReactContext context) {
+    return new ReactTextViewImproved(context);
   }
 
   @Override
   @ReactProp(name = "color")
-  public void setColor(ReactTextView view, @Nullable String color) {
+  public void setColor(ReactTextViewImproved view, @Nullable String color) {
     view.setBackgroundColor(Color.parseColor(color));
   }
 }
