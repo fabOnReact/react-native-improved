@@ -8,7 +8,5 @@ public class ReactTextViewImproved extends ReactTextView {
   public ReactTextViewImproved(ReactContext context) {
     super(context);
     setText("Hello World");
-    setWidth(100);
-    setHeight(100);
   }
 }

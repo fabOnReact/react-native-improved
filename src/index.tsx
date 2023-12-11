@@ -30,12 +30,11 @@ const textViewConfig = {
       registrationName: 'onInlineViewLayout',
     },
   },
-  uiViewClassName: 'TextViewImproved',
+  uiViewClassName: 'RCTText',
 };
 
-const NativeTextImproved = createReactNativeComponentClass(
-  'TextViewImproved',
-  () => createViewConfig(textViewConfig)
+const NativeTextImproved = createReactNativeComponentClass('RCTText', () =>
+  createViewConfig(textViewConfig)
 );
 
 export const TextViewImproved = (props) => {

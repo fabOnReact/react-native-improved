@@ -17,7 +17,7 @@ import com.facebook.react.views.text.ReactTextViewManager;
 public class ReactTextViewImprovedManager
   extends ReactTextViewManager {
   // Need to rename to ReactTextViewImproved
-  public static final String NAME = "TextViewImproved";
+  public static final String NAME = "RCTText";
 
   @Override
   public String getName() {

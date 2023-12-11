@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { TextViewImproved } from 'react-native-text';
 
 export default function App() {
-  return <TextViewImproved style={styles.parentText} />;
+  return <TextViewImproved style={styles.parentText}>test</TextViewImproved>;
 }
 
 const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   parentText: {
-    width: 60,
+    width: 160,
     height: 60,
     marginVertical: 20,
     backgroundColor: 'red',
