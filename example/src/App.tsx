@@ -6,7 +6,7 @@ import { TextView } from 'react-native-text';
 export default function App() {
   return (
     <View style={styles.container}>
-      <TextView color="#32a852" style={styles.box} />
+      <TextView style={styles.box} />
     </View>
   );
 }
@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginVertical: 20,
+    backgroundColor: 'red',
   },
 });

@@ -15,23 +15,12 @@ import com.facebook.react.views.text.ReactTextViewManager;
 
 @ReactModule(name = ReactTextViewImprovedManager.NAME)
 public class ReactTextViewImprovedManager
-  extends TextViewManagerSpec<ReactTextViewImproved> {
+  extends ReactTextViewManager {
   // Need to rename to ReactTextViewImproved
   public static final String NAME = "TextView";
 
   @Override
   public String getName() {
     return NAME;
-  }
-
-  @Override
-  public ReactTextViewImproved createViewInstance(ThemedReactContext context) {
-    return new ReactTextViewImproved(context);
-  }
-
-  @Override
-  @ReactProp(name = "color")
-  public void setColor(ReactTextViewImproved view, @Nullable String color) {
-    view.setBackgroundColor(Color.parseColor(color));
   }
 }
