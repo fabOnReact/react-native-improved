@@ -14,7 +14,7 @@ public class TextViewPackage implements ReactPackage {
   @Override
   public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
     List<ViewManager> viewManagers = new ArrayList<>();
-    viewManagers.add(new TextViewManager());
+    viewManagers.add(new ReactTextViewManager());
     return viewManagers;
   }
 
