@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { TextViewImproved } from 'react-native-text';
 
 export default function App() {
-  return <TextViewImproved style={parentText} />;
+  return <TextViewImproved style={styles.parentText} />;
 }
 
 const styles = StyleSheet.create({
