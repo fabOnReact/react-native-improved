@@ -192,6 +192,11 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
     Layout layout;
     BoringLayout.Metrics boring = BoringLayout.isBoring(text, textPaint);
     float desiredWidth = boring == null ? Layout.getDesiredWidth(text, textPaint) : Float.NaN;
+    // StaticLayout#getLineWidth does not work with single-line text.
+    boolean overrideTextBreakStrategySingleLine =
+      boring == null
+        ? false
+        : mNumberOfLines == 1 && !mAdjustsFontSizeToFit && boring.width > width;
 
     // technically, width should never be negative, but there is currently a bug in
     boolean unconstrainedWidth = widthMode == YogaMeasureMode.UNDEFINED || width < 0;
@@ -231,7 +236,7 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
       }
       layout = builder.build();
 
-    } else if (boring != null && (unconstrainedWidth || boring.width <= width)) {
+    } else if (boring != null && (unconstrainedWidth || boring.width <= width || overrideTextBreakStrategySingleLine)) {
       // Is used for single-line, boring text when the width is either unknown or bigger
       // than the width of the text.
       layout =
