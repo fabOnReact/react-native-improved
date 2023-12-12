@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { StyleSheet, View } from 'react-native';
-import { TextView } from 'react-native-text';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { TextViewImproved } from 'react-native-text';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <TextView color="#32a852" style={styles.box} />
+    <View>
+      <TextViewImproved style={styles.parentText}>New text</TextViewImproved>
+      <Text>This is normal text</Text>
     </View>
   );
 }
@@ -17,9 +18,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
+  parentText: {
+    width: 160,
     height: 60,
     marginVertical: 20,
+    backgroundColor: 'red',
+  },
+  childText: {
+    color: 'blue',
   },
 });
