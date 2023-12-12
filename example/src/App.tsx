@@ -6,8 +6,11 @@ import { TextViewImproved } from 'react-native-text';
 export default function App() {
   return (
     <View>
-      <TextViewImproved style={styles.parentText}>New text</TextViewImproved>
+      <TextViewImproved style={styles.parentText}>
+        This is the new text
+      </TextViewImproved>
       <Text>This is normal text</Text>
+      <TextInput style={styles.input} />
     </View>
   );
 }
@@ -26,5 +29,8 @@ const styles = StyleSheet.create({
   },
   childText: {
     color: 'blue',
+  },
+  input: {
+    borderWidth: 1,
   },
 });
