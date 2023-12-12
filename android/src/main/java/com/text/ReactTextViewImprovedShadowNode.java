@@ -297,26 +297,6 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
   }
 
   @Override
-  public boolean isVirtualAnchor() {
-    // Text's descendants aren't necessarily all virtual nodes. Text can contain a combination of
-    // virtual and non-virtual (e.g. inline views) nodes. Therefore it's not a virtual anchor
-    // by the doc comment on {@link ReactShadowNode#isVirtualAnchor}.
-    return false;
-  }
-
-  @Override
-  public boolean hoistNativeChildren() {
-    return true;
-  }
-
-  @Override
-  public void markUpdated() {
-    super.markUpdated();
-    // Telling to Yoga that the node should be remeasured on next layout pass.
-    super.dirty();
-  }
-
-  @Override
   public void onCollectExtraUpdates(UIViewOperationQueue uiViewOperationQueue) {
     super.onCollectExtraUpdates(uiViewOperationQueue);
 
