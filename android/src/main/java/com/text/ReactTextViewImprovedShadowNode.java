@@ -11,6 +11,7 @@ import com.facebook.yoga.YogaMeasureOutput;
 import com.facebook.yoga.YogaNode;
 
 public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
+
   private final YogaMeasureFunction mTextMeasureFunction =
     new YogaMeasureFunction() {
       @Override
@@ -20,19 +21,7 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
         YogaMeasureMode widthMode,
         float height,
         YogaMeasureMode heightMode) {
-        return YogaMeasureOutput.make(50, 50);
-      }
-    };
-  private final YogaMeasureFunction mTextMeasureFunction2 =
-    new YogaMeasureFunction() {
-      @Override
-      public long measure(
-        YogaNode node,
-        float width,
-        YogaMeasureMode widthMode,
-        float height,
-        YogaMeasureMode heightMode) {
-        return YogaMeasureOutput.make(50, 50);
+        return YogaMeasureOutput.make(200, 200);
       }
     };
 
@@ -47,8 +36,7 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
 
   private void initMeasureFunction() {
     if (!isVirtual()) {
-      super.setMeasureFunction(null);
-      setMeasureFunction(mTextMeasureFunction2);
+      setMeasureFunction(mTextMeasureFunction);
     }
   }
 }

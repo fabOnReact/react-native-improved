@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 public class ReactTextViewImprovedManager
   extends ReactTextViewManager {
   public static final String NAME = "RCTTextImproved";
-  protected @Nullable ReactTextViewManagerCallback mReactTextViewManagerCallback2;
+  protected @Nullable ReactTextViewManagerCallback mReactTextViewManagerCallback;
 
   @Override
   public String getName() {
@@ -26,7 +26,7 @@ public class ReactTextViewImprovedManager
 
   public ReactTextViewImprovedManager(@Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
     super(reactTextViewManagerCallback);
-    mReactTextViewManagerCallback2 = reactTextViewManagerCallback;
+    mReactTextViewManagerCallback = reactTextViewManagerCallback;
   }
 
   @Override
@@ -36,7 +36,7 @@ public class ReactTextViewImprovedManager
 
   @Override
   public ReactTextShadowNode createShadowNodeInstance() {
-    return new ReactTextViewImprovedShadowNode(mReactTextViewManagerCallback2);
+    return new ReactTextViewImprovedShadowNode(mReactTextViewManagerCallback);
   }
 
   @Override
