@@ -18,6 +18,8 @@ export default function App() {
             {email}
           </TextViewImproved>
         </View>
+        <TextInput style={styles.input} />
+        <Text>Normal Text</Text>
       </View>
     </>
   );
@@ -36,4 +38,5 @@ const styles = StyleSheet.create({
   parentText: {
     backgroundColor: 'red',
   },
+  input: { borderWidth: 1 },
 });

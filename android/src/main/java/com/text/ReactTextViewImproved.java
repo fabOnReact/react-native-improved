@@ -10,11 +10,4 @@ public class ReactTextViewImproved extends ReactTextView {
   public ReactTextViewImproved(ReactContext context) {
     super(context);
   }
-
-  @Override
-  public void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    // original was red, we change to blue
-    // setBackgroundColor(Color.BLUE);
-  }
 }
