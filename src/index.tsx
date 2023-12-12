@@ -30,11 +30,11 @@ const textViewConfig = {
       registrationName: 'onInlineViewLayout',
     },
   },
-  uiViewClassName: 'AndroidTextInput',
+  uiViewClassName: 'RCTTextImproved',
 };
 
 const NativeTextImproved = createReactNativeComponentClass(
-  'AndroidTextInput',
+  'RCTTextImproved',
   () => createViewConfig(textViewConfig)
 );
 
