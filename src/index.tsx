@@ -41,9 +41,3 @@ const NativeTextImproved = createReactNativeComponentClass(
 export const TextViewImproved = (props) => {
   return <NativeTextImproved {...props} />;
 };
-console.log('----------');
-console.log('typeof TextViewImproved', typeof TextViewImproved);
-console.log('typeof TextViewImproved()', typeof TextViewImproved());
-console.log('----------');
-
-// TextView.displayName = 'TextView';
