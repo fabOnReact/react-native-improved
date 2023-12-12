@@ -1,10 +1,15 @@
 import * as React from 'react';
 
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { TextViewImproved } from 'react-native-text';
 
 export default function App() {
-  return <TextViewImproved style={styles.parentText}>test</TextViewImproved>;
+  return (
+    <View>
+      <TextViewImproved style={styles.parentText}>New text</TextViewImproved>
+      <Text>This is normal text</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
