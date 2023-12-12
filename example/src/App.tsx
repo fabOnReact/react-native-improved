@@ -22,8 +22,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   parentText: {
-    width: 160,
-    height: 60,
     marginVertical: 20,
     backgroundColor: 'red',
   },

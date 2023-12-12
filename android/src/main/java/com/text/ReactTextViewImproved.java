@@ -15,6 +15,6 @@ public class ReactTextViewImproved extends ReactTextView {
   public void onAttachedToWindow() {
     super.onAttachedToWindow();
     // original was red, we change to blue
-    setBackgroundColor(Color.BLUE);
+    // setBackgroundColor(Color.BLUE);
   }
 }
