@@ -1,5 +1,13 @@
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 package com.text;
 
+import androidx.annotation.Nullable;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.views.text.ReactTextShadowNode;
@@ -7,11 +15,8 @@ import com.facebook.react.views.text.ReactTextView;
 import com.facebook.react.views.text.ReactTextViewManager;
 import com.facebook.react.views.text.ReactTextViewManagerCallback;
 
-import androidx.annotation.Nullable;
-
 @ReactModule(name = ReactTextViewImprovedManager.NAME)
-public class ReactTextViewImprovedManager
-  extends ReactTextViewManager {
+public class ReactTextViewImprovedManager extends ReactTextViewManager {
   public static final String NAME = "RCTTextImproved";
   protected @Nullable ReactTextViewManagerCallback mReactTextViewManagerCallback;
 
@@ -24,7 +29,8 @@ public class ReactTextViewImprovedManager
     this(null);
   }
 
-  public ReactTextViewImprovedManager(@Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
+  public ReactTextViewImprovedManager(
+      @Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
     super(reactTextViewManagerCallback);
     mReactTextViewManagerCallback = reactTextViewManagerCallback;
   }

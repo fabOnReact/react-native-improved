@@ -1,6 +1,11 @@
-package com.text;
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-import androidx.annotation.Nullable;
+package com.text;
 
 import android.os.Build;
 import android.text.BoringLayout;
@@ -10,6 +15,7 @@ import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.Gravity;
+import androidx.annotation.Nullable;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactNoCrashSoftException;
@@ -50,128 +56,129 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
   private boolean mShouldNotifyOnTextLayout;
 
   private final YogaMeasureFunction mTextMeasureFunction =
-    new YogaMeasureFunction() {
-      @Override
-      public long measure(
-        YogaNode node,
-        float width,
-        YogaMeasureMode widthMode,
-        float height,
-        YogaMeasureMode heightMode) {
-        Spannable text =
-          Assertions.assertNotNull(
-            mPreparedSpannableText,
-            "Spannable element has not been prepared in onBeforeLayout");
+      new YogaMeasureFunction() {
+        @Override
+        public long measure(
+            YogaNode node,
+            float width,
+            YogaMeasureMode widthMode,
+            float height,
+            YogaMeasureMode heightMode) {
+          Spannable text =
+              Assertions.assertNotNull(
+                  mPreparedSpannableText,
+                  "Spannable element has not been prepared in onBeforeLayout");
 
-        Layout layout = measureSpannedText(text, width, widthMode);
+          Layout layout = measureSpannedText(text, width, widthMode);
 
-        if (mAdjustsFontSizeToFit) {
-          int initialFontSize = mTextAttributes.getEffectiveFontSize();
-          int currentFontSize = mTextAttributes.getEffectiveFontSize();
-          // Minimum font size is 4pts to match the iOS implementation.
-          int minimumFontSize =
-            (int) Math.max(mMinimumFontScale * initialFontSize, PixelUtil.toPixelFromDIP(4));
-          while (currentFontSize > minimumFontSize
-            && (mNumberOfLines != UNSET && layout.getLineCount() > mNumberOfLines
-            || heightMode != YogaMeasureMode.UNDEFINED && layout.getHeight() > height)) {
-            // TODO: We could probably use a smarter algorithm here. This will require 0(n)
-            // measurements
-            // based on the number of points the font size needs to be reduced by.
-            currentFontSize -= Math.max(1, (int) PixelUtil.toPixelFromDIP(1));
+          if (mAdjustsFontSizeToFit) {
+            int initialFontSize = mTextAttributes.getEffectiveFontSize();
+            int currentFontSize = mTextAttributes.getEffectiveFontSize();
+            // Minimum font size is 4pts to match the iOS implementation.
+            int minimumFontSize =
+                (int) Math.max(mMinimumFontScale * initialFontSize, PixelUtil.toPixelFromDIP(4));
+            while (currentFontSize > minimumFontSize
+                && (mNumberOfLines != UNSET && layout.getLineCount() > mNumberOfLines
+                    || heightMode != YogaMeasureMode.UNDEFINED && layout.getHeight() > height)) {
+              // TODO: We could probably use a smarter algorithm here. This will require 0(n)
+              // measurements
+              // based on the number of points the font size needs to be reduced by.
+              currentFontSize -= Math.max(1, (int) PixelUtil.toPixelFromDIP(1));
 
-            float ratio = (float) currentFontSize / (float) initialFontSize;
-            ReactAbsoluteSizeSpan[] sizeSpans =
-              text.getSpans(0, text.length(), ReactAbsoluteSizeSpan.class);
-            for (ReactAbsoluteSizeSpan span : sizeSpans) {
-              text.setSpan(
-                new ReactAbsoluteSizeSpan(
-                  (int) Math.max((span.getSize() * ratio), minimumFontSize)),
-                text.getSpanStart(span),
-                text.getSpanEnd(span),
-                text.getSpanFlags(span));
-              text.removeSpan(span);
-            }
-            layout = measureSpannedText(text, width, widthMode);
-          }
-        }
-
-        if (mShouldNotifyOnTextLayout) {
-          ThemedReactContext themedReactContext = getThemedContext();
-          WritableArray lines =
-            FontMetricsUtil.getFontMetrics(
-              text, layout, sTextPaintInstance, themedReactContext);
-          WritableMap event = Arguments.createMap();
-          event.putArray("lines", lines);
-          if (themedReactContext.hasActiveReactInstance()) {
-            themedReactContext
-              .getJSModule(RCTEventEmitter.class)
-              .receiveEvent(getReactTag(), "topTextLayout", event);
-          } else {
-            ReactSoftExceptionLogger.logSoftException(
-              "ReactTextShadowNode",
-              new ReactNoCrashSoftException("Cannot get RCTEventEmitter, no CatalystInstance"));
-          }
-        }
-
-        final int lineCount =
-          mNumberOfLines == UNSET
-            ? layout.getLineCount()
-            : Math.min(mNumberOfLines, layout.getLineCount());
-
-        // Instead of using `layout.getWidth()` (which may yield a significantly larger width for
-        // text that is wrapping), compute width using the longest line.
-        float layoutWidth = 0;
-        if (widthMode == YogaMeasureMode.EXACTLY) {
-          layoutWidth = width;
-        } else {
-          for (int lineIndex = 0; lineIndex < lineCount; lineIndex++) {
-            boolean endsWithNewLine =
-              text.length() > 0 && text.charAt(layout.getLineEnd(lineIndex) - 1) == '\n';
-            float lineWidth =
-              endsWithNewLine ? layout.getLineMax(lineIndex) : layout.getLineWidth(lineIndex);
-            if (lineWidth > layoutWidth) {
-              layoutWidth = lineWidth;
+              float ratio = (float) currentFontSize / (float) initialFontSize;
+              ReactAbsoluteSizeSpan[] sizeSpans =
+                  text.getSpans(0, text.length(), ReactAbsoluteSizeSpan.class);
+              for (ReactAbsoluteSizeSpan span : sizeSpans) {
+                text.setSpan(
+                    new ReactAbsoluteSizeSpan(
+                        (int) Math.max((span.getSize() * ratio), minimumFontSize)),
+                    text.getSpanStart(span),
+                    text.getSpanEnd(span),
+                    text.getSpanFlags(span));
+                text.removeSpan(span);
+              }
+              layout = measureSpannedText(text, width, widthMode);
             }
           }
-          if (widthMode == YogaMeasureMode.AT_MOST && layoutWidth > width) {
+
+          if (mShouldNotifyOnTextLayout) {
+            ThemedReactContext themedReactContext = getThemedContext();
+            WritableArray lines =
+                FontMetricsUtil.getFontMetrics(
+                    text, layout, sTextPaintInstance, themedReactContext);
+            WritableMap event = Arguments.createMap();
+            event.putArray("lines", lines);
+            if (themedReactContext.hasActiveReactInstance()) {
+              themedReactContext
+                  .getJSModule(RCTEventEmitter.class)
+                  .receiveEvent(getReactTag(), "topTextLayout", event);
+            } else {
+              ReactSoftExceptionLogger.logSoftException(
+                  "ReactTextShadowNode",
+                  new ReactNoCrashSoftException("Cannot get RCTEventEmitter, no CatalystInstance"));
+            }
+          }
+
+          final int lineCount =
+              mNumberOfLines == UNSET
+                  ? layout.getLineCount()
+                  : Math.min(mNumberOfLines, layout.getLineCount());
+
+          // Instead of using `layout.getWidth()` (which may yield a significantly larger width for
+          // text that is wrapping), compute width using the longest line.
+          float layoutWidth = 0;
+          if (widthMode == YogaMeasureMode.EXACTLY) {
             layoutWidth = width;
+          } else {
+            for (int lineIndex = 0; lineIndex < lineCount; lineIndex++) {
+              boolean endsWithNewLine =
+                  text.length() > 0 && text.charAt(layout.getLineEnd(lineIndex) - 1) == '\n';
+              float lineWidth =
+                  endsWithNewLine ? layout.getLineMax(lineIndex) : layout.getLineWidth(lineIndex);
+              if (lineWidth > layoutWidth) {
+                layoutWidth = lineWidth;
+              }
+            }
+            if (widthMode == YogaMeasureMode.AT_MOST && layoutWidth > width) {
+              layoutWidth = width;
+            }
           }
-        }
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-          layoutWidth = (float) Math.ceil(layoutWidth);
-        }
-        float layoutHeight = height;
-        if (heightMode != YogaMeasureMode.EXACTLY) {
-          layoutHeight = layout.getLineBottom(lineCount - 1);
-          if (heightMode == YogaMeasureMode.AT_MOST && layoutHeight > height) {
-            layoutHeight = height;
+          if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+            layoutWidth = (float) Math.ceil(layoutWidth);
           }
-        }
+          float layoutHeight = height;
+          if (heightMode != YogaMeasureMode.EXACTLY) {
+            layoutHeight = layout.getLineBottom(lineCount - 1);
+            if (heightMode == YogaMeasureMode.AT_MOST && layoutHeight > height) {
+              layoutHeight = height;
+            }
+          }
 
-        return YogaMeasureOutput.make(layoutWidth, layoutHeight);
-      }
-    };
+          return YogaMeasureOutput.make(layoutWidth, layoutHeight);
+        }
+      };
 
   private final YogaBaselineFunction mTextBaselineFunction =
-    new YogaBaselineFunction() {
-      @Override
-      public float baseline(YogaNode node, float width, float height) {
-        Spannable text =
-          Assertions.assertNotNull(
-            mPreparedSpannableText,
-            "Spannable element has not been prepared in onBeforeLayout");
+      new YogaBaselineFunction() {
+        @Override
+        public float baseline(YogaNode node, float width, float height) {
+          Spannable text =
+              Assertions.assertNotNull(
+                  mPreparedSpannableText,
+                  "Spannable element has not been prepared in onBeforeLayout");
 
-        Layout layout = measureSpannedText(text, width, YogaMeasureMode.EXACTLY);
-        return layout.getLineBaseline(layout.getLineCount() - 1);
-      }
-    };
+          Layout layout = measureSpannedText(text, width, YogaMeasureMode.EXACTLY);
+          return layout.getLineBaseline(layout.getLineCount() - 1);
+        }
+      };
 
   public ReactTextViewImprovedShadowNode() {
     this(null);
   }
 
-  public ReactTextViewImprovedShadowNode(@Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
+  public ReactTextViewImprovedShadowNode(
+      @Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
     super(reactTextViewManagerCallback);
     initMeasureFunction();
   }
@@ -192,9 +199,9 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
     float desiredWidth = boring == null ? Layout.getDesiredWidth(text, textPaint) : Float.NaN;
     // StaticLayout#getLineWidth does not work with single-line text.
     boolean overrideTextBreakStrategySingleLine =
-      boring == null
-        ? false
-        : mNumberOfLines == 1 && !mAdjustsFontSizeToFit && boring.width > width;
+        boring == null
+            ? false
+            : mNumberOfLines == 1 && !mAdjustsFontSizeToFit && boring.width > width;
 
     // technically, width should never be negative, but there is currently a bug in
     boolean unconstrainedWidth = widthMode == YogaMeasureMode.UNDEFINED || width < 0;
@@ -213,18 +220,18 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
     }
 
     if (boring == null
-      && (unconstrainedWidth
-      || (!YogaConstants.isUndefined(desiredWidth) && desiredWidth <= width))) {
+        && (unconstrainedWidth
+            || (!YogaConstants.isUndefined(desiredWidth) && desiredWidth <= width))) {
       // Is used when the width is not known and the text is not boring, ie. if it contains
       // unicode characters.
       int hintWidth = (int) Math.ceil(desiredWidth);
       StaticLayout.Builder builder =
-        StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, hintWidth)
-          .setAlignment(alignment)
-          .setLineSpacing(0.f, 1.f)
-          .setIncludePad(mIncludeFontPadding)
-          .setBreakStrategy(mTextBreakStrategy)
-          .setHyphenationFrequency(mHyphenationFrequency);
+          StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, hintWidth)
+              .setAlignment(alignment)
+              .setLineSpacing(0.f, 1.f)
+              .setIncludePad(mIncludeFontPadding)
+              .setBreakStrategy(mTextBreakStrategy)
+              .setHyphenationFrequency(mHyphenationFrequency);
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         builder.setJustificationMode(mJustificationMode);
@@ -234,19 +241,20 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
       }
       layout = builder.build();
 
-    } else if (boring != null && (unconstrainedWidth || boring.width <= width || overrideTextBreakStrategySingleLine)) {
+    } else if (boring != null
+        && (unconstrainedWidth || boring.width <= width || overrideTextBreakStrategySingleLine)) {
       // Is used for single-line, boring text when the width is either unknown or bigger
       // than the width of the text.
       layout =
-        BoringLayout.make(
-          text,
-          textPaint,
-          Math.max(boring.width, 0),
-          alignment,
-          1.f,
-          0.f,
-          boring,
-          mIncludeFontPadding);
+          BoringLayout.make(
+              text,
+              textPaint,
+              Math.max(boring.width, 0),
+              alignment,
+              1.f,
+              0.f,
+              boring,
+              mIncludeFontPadding);
     } else {
       // Is used for multiline, boring text and the width is known.
       // Android 11+ introduces changes in text width calculation which leads to cases
@@ -257,12 +265,12 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
       }
 
       StaticLayout.Builder builder =
-        StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, (int) width)
-          .setAlignment(alignment)
-          .setLineSpacing(0.f, 1.f)
-          .setIncludePad(mIncludeFontPadding)
-          .setBreakStrategy(mTextBreakStrategy)
-          .setHyphenationFrequency(mHyphenationFrequency);
+          StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, (int) width)
+              .setAlignment(alignment)
+              .setLineSpacing(0.f, 1.f)
+              .setIncludePad(mIncludeFontPadding)
+              .setBreakStrategy(mTextBreakStrategy)
+              .setHyphenationFrequency(mHyphenationFrequency);
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
         builder.setUseLineSpacingFromFallbacks(true);
@@ -288,11 +296,11 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
   @Override
   public void onBeforeLayout(NativeViewHierarchyOptimizer nativeViewHierarchyOptimizer) {
     mPreparedSpannableText =
-      spannedFromShadowNode(
-        this,
-        /* text (e.g. from `value` prop): */ null,
-        /* supportsInlineViews: */ true,
-        nativeViewHierarchyOptimizer);
+        spannedFromShadowNode(
+            this,
+            /* text (e.g. from `value` prop): */ null,
+            /* supportsInlineViews: */ true,
+            nativeViewHierarchyOptimizer);
     markUpdated();
   }
 
@@ -302,17 +310,17 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
 
     if (mPreparedSpannableText != null) {
       ReactTextUpdate reactTextUpdate =
-        new ReactTextUpdate(
-          mPreparedSpannableText,
-          UNSET,
-          mContainsImages,
-          getPadding(Spacing.START),
-          getPadding(Spacing.TOP),
-          getPadding(Spacing.END),
-          getPadding(Spacing.BOTTOM),
-          getTextAlign(),
-          mTextBreakStrategy,
-          mJustificationMode);
+          new ReactTextUpdate(
+              mPreparedSpannableText,
+              UNSET,
+              mContainsImages,
+              getPadding(Spacing.START),
+              getPadding(Spacing.TOP),
+              getPadding(Spacing.END),
+              getPadding(Spacing.BOTTOM),
+              getTextAlign(),
+              mTextBreakStrategy,
+              mJustificationMode);
       uiViewOperationQueue.enqueueUpdateExtraData(getReactTag(), reactTextUpdate);
     }
   }
@@ -332,11 +340,11 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
     }
 
     Spanned text =
-      Assertions.assertNotNull(
-        this.mPreparedSpannableText,
-        "Spannable element has not been prepared in onBeforeLayout");
+        Assertions.assertNotNull(
+            this.mPreparedSpannableText,
+            "Spannable element has not been prepared in onBeforeLayout");
     TextInlineViewPlaceholderSpan[] placeholders =
-      text.getSpans(0, text.length(), TextInlineViewPlaceholderSpan.class);
+        text.getSpans(0, text.length(), TextInlineViewPlaceholderSpan.class);
     ArrayList<ReactShadowNode> shadowNodes = new ArrayList<>(placeholders.length);
 
     for (TextInlineViewPlaceholderSpan placeholder : placeholders) {
