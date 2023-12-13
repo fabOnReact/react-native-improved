@@ -1,5 +1,6 @@
 import createReactNativeComponentClass from 'react-native/Libraries/Renderer/shims/createReactNativeComponentClass';
 import { createViewConfig } from 'react-native/Libraries/NativeComponent/ViewConfig';
+import { Text, Platform } from 'react-native';
 
 const textViewConfig = {
   validAttributes: {
@@ -39,5 +40,11 @@ const NativeTextImproved = createReactNativeComponentClass(
 );
 
 export const TextViewImproved = (props) => {
-  return <NativeTextImproved {...props} />;
+  const TextComponent =
+    Platform.OS == 'ios' ? (
+      <Text {...props} />
+    ) : (
+      <NativeTextImproved {...props} />
+    );
+  return TextComponent;
 };
