@@ -1,6 +1,7 @@
 # react-native-improved
 
-Improved React Components, currently only Text (Android).
+Provides react-native components with different fixes.
+Currently supports only the old architecture.
 
 ## Installation
 
