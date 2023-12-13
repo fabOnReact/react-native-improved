@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import createReactNativeComponentClass from 'react-native/Libraries/Renderer/shims/createReactNativeComponentClass';
 import { createViewConfig } from 'react-native/Libraries/NativeComponent/ViewConfig';
 import { Text, Platform } from 'react-native';
