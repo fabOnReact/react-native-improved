@@ -1,6 +1,6 @@
-# react-native-text
+# react-native-improved
 
-Improved Text Component
+Improved React Components, currently only Text (Android).
 
 ## Installation
 
