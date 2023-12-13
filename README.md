@@ -1,8 +1,10 @@
-# react-native-text
+# react-native-improved
 
-Improved Text Component
+Improved React Components, currently only Text (Android).
 
 ## Installation
+
+**IMPORTANT**: to use this package you need to apply a patch to react-native-renderer for dev and prop. The patch is available [here](https://github.com/fabriziobertoglio1987/react-native-improved/blob/main/example/patches/react-native%2B0.73.0%2B001%2Bfix-renderer-text-runtime.patch) and is applied with patch-package to react-native 0.73. There is a facebook/react PR to address this issue.
 
 ```sh
 npm install react-native-improved
@@ -15,7 +17,7 @@ import { TextImproved } from 'react-native-improved';
 
 // ...
 
-<TextImproved>My new text works</Text>;
+<TextImproved>A new text with additional fixes</Text>;
 ```
 
 ## Contributing
