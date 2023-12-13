@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import { TextViewImproved } from 'react-native-text';
+import { TextImproved } from 'react-native-improved';
 
 export default function App() {
   const email =
@@ -10,13 +10,13 @@ export default function App() {
     <>
       <View style={styles.container}>
         <View style={styles.flexBrokenStyle}>
-          <TextViewImproved
+          <TextImproved
             textBreakStrategy="simple"
             style={styles.parentText}
             numberOfLines={1}
           >
             {email}
-          </TextViewImproved>
+          </TextImproved>
         </View>
         <TextInput style={styles.input} />
         <Text>Normal Text</Text>

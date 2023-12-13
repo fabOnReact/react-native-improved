@@ -1,7 +1,7 @@
 {
-  "name": "react-native-text",
+  "name": "react-native-improved",
   "version": "0.1.0",
-  "description": "Improved Text Component",
+  "description": "Improved React Native Components",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-text-example",
+    "example": "yarn workspace react-native-improved-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -41,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fabriziobertoglio1987/react-native-text.git"
+    "url": "git+https://github.com/fabriziobertoglio1987/react-native-improved.git"
   },
   "author": "Fabrizio Bertoglio <fabrizio.bertoglio@gmail.com> (https://github.com/fabriziobertoglio1987)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fabriziobertoglio1987/react-native-text/issues"
+    "url": "https://github.com/fabriziobertoglio1987/react-native-improved/issues"
   },
-  "homepage": "https://github.com/fabriziobertoglio1987/react-native-text#readme",
+  "homepage": "https://github.com/fabriziobertoglio1987/react-native-improved#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

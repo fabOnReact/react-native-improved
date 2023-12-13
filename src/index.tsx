@@ -39,7 +39,7 @@ const NativeTextImproved = createReactNativeComponentClass(
   () => createViewConfig(textViewConfig)
 );
 
-export const TextViewImproved = (props) => {
+export const TextImproved = (props) => {
   const TextComponent =
     Platform.OS == 'ios' ? (
       <Text {...props} />

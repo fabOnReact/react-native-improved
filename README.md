@@ -5,17 +5,17 @@ Improved Text Component
 ## Installation
 
 ```sh
-npm install react-native-text
+npm install react-native-improved
 ```
 
 ## Usage
 
 ```js
-import { TextView } from "react-native-text";
+import { TextImproved } from 'react-native-improved';
 
 // ...
 
-<TextView color="tomato" />
+<TextImproved>My new text works</Text>;
 ```
 
 ## Contributing

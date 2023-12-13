@@ -11016,9 +11016,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-text-example@workspace:example":
+"react-native-improved-example@workspace:example":
   version: 0.0.0-use.local
-  resolution: "react-native-text-example@workspace:example"
+  resolution: "react-native-improved-example@workspace:example"
   dependencies:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
@@ -11035,9 +11035,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-native-text@workspace:.":
+"react-native-improved@workspace:.":
   version: 0.0.0-use.local
-  resolution: "react-native-text@workspace:."
+  resolution: "react-native-improved@workspace:."
   dependencies:
     "@commitlint/config-conventional": ^17.0.2
     "@evilmartians/lefthook": ^1.5.0
