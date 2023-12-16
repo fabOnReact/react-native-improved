@@ -1,27 +1,19 @@
 import * as React from 'react';
 
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import { TextImproved } from 'react-native-improved';
+import { TextImproved, TextInputImproved } from 'react-native-improved';
 
 export default function App() {
   const email =
     'From vincenzoddragon+five@gmail.com  From vincenzoddrlxagon+five@gmail.com';
   return (
-    <>
-      <View style={styles.container}>
-        <View style={styles.flexBrokenStyle}>
-          <TextImproved
-            textBreakStrategy="simple"
-            style={styles.parentText}
-            numberOfLines={1}
-          >
-            {email}
-          </TextImproved>
-        </View>
-        <TextInput style={styles.input} />
-        <Text>Normal Text</Text>
-      </View>
-    </>
+    <View style={{ marginTop: 200 }}>
+      <TextInputImproved
+        value="Text"
+        style={{ height: 50, width: 400 }}
+        color="red"
+      />
+    </View>
   );
 }
 

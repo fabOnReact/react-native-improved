@@ -1,60 +1,43 @@
-#ifdef RCT_NEW_ARCH_ENABLED
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+#import <React/RCTMultilineTextInputView.h>
+
+#import <React/RCTUtils.h>
+
+#import <React/RCTUITextView.h>
+
 #import "TextView.h"
 
-#import <react/renderer/components/RNTextViewSpec/ComponentDescriptors.h>
-#import <react/renderer/components/RNTextViewSpec/EventEmitters.h>
-#import <react/renderer/components/RNTextViewSpec/Props.h>
-#import <react/renderer/components/RNTextViewSpec/RCTComponentViewHelpers.h>
-
-#import "RCTFabricComponentsPlugins.h"
 #import "Utils.h"
 
-using namespace facebook::react;
-
-@interface TextView () <RCTTextViewViewProtocol>
-
-@end
+#import <React/RCTUITextView.h>
 
 @implementation TextView {
-    UIView * _view;
+  RCTUITextView *_backedTextInputView;
 }
 
-+ (ComponentDescriptorProvider)componentDescriptorProvider
+- (instancetype)initWithBridge:(RCTBridge *)bridge
 {
-    return concreteComponentDescriptorProvider<TextViewComponentDescriptor>();
-}
+  if (self = [super initWithBridge:bridge]) {
+    _backedTextInputView = [[RCTUITextView alloc] initWithFrame:self.bounds];
+    _backedTextInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _backedTextInputView.textInputDelegate = self;
+    // _backedTextInputView.backgroundColor = [UIColor blackColor];
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-  if (self = [super initWithFrame:frame]) {
-    static const auto defaultProps = std::make_shared<const TextViewProps>();
-    _props = defaultProps;
-
-    _view = [[UIView alloc] init];
-
-    self.contentView = _view;
+    [self addSubview:_backedTextInputView];
   }
 
   return self;
 }
 
-- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
+- (id<RCTBackedTextInputViewProtocol>)backedTextInputView
 {
-    const auto &oldViewProps = *std::static_pointer_cast<TextViewProps const>(_props);
-    const auto &newViewProps = *std::static_pointer_cast<TextViewProps const>(props);
-
-    if (oldViewProps.color != newViewProps.color) {
-        NSString * colorToConvert = [[NSString alloc] initWithUTF8String: newViewProps.color.c_str()];
-        [_view setBackgroundColor: [Utils hexStringToColor:colorToConvert]];
-    }
-
-    [super updateProps:props oldProps:oldProps];
-}
-
-Class<RCTComponentViewProtocol> TextViewCls(void)
-{
-    return TextView.class;
+  return _backedTextInputView;
 }
 
 @end
-#endif

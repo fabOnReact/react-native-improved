@@ -7,7 +7,7 @@
 
 import createReactNativeComponentClass from 'react-native/Libraries/Renderer/shims/createReactNativeComponentClass';
 import { createViewConfig } from 'react-native/Libraries/NativeComponent/ViewConfig';
-import { Text, Platform } from 'react-native';
+import { Text, TextInput, Platform } from 'react-native';
 
 const textViewConfig = {
   validAttributes: {
@@ -41,9 +41,18 @@ const textViewConfig = {
   uiViewClassName: 'RCTTextImproved',
 };
 
+const textInputViewConfig = {
+  uiViewClassName: 'TextView',
+};
+
 const NativeTextImproved = createReactNativeComponentClass(
   'RCTTextImproved',
   () => createViewConfig(textViewConfig)
+);
+
+const NativeTextInputImproved = createReactNativeComponentClass(
+  'TextView',
+  () => createViewConfig(textInputViewConfig)
 );
 
 export const TextImproved = (props: any) => {
@@ -52,6 +61,16 @@ export const TextImproved = (props: any) => {
       <Text {...props} />
     ) : (
       <NativeTextImproved {...props} />
+    );
+  return TextComponent;
+};
+
+export const TextInputImproved = (props: any) => {
+  const TextComponent =
+    Platform.OS == 'ios' ? (
+      <NativeTextInputImproved {...props} />
+    ) : (
+      <TextInput {...props} />
     );
   return TextComponent;
 };
