@@ -8,11 +8,10 @@ export default function App() {
     'From vincenzoddragon+five@gmail.com  From vincenzoddrlxagon+five@gmail.com';
   return (
     <View style={{ marginTop: 200 }}>
-      <TextInputImproved
-        value="Text"
-        style={{ height: 50, width: 400 }}
-        color="red"
-      />
+      <TextInput autoFocus={true}>React Native</TextInput>
+      <TextInputImproved style={{ lineHeight: 24 }} value="समुद्री उल्लू">
+        समुद्री उल्लू
+      </TextInputImproved>
     </View>
   );
 }

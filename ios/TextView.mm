@@ -27,7 +27,7 @@
     _backedTextInputView = [[RCTUITextView alloc] initWithFrame:self.bounds];
     _backedTextInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _backedTextInputView.textInputDelegate = self;
-    // _backedTextInputView.backgroundColor = [UIColor blackColor];
+    _backedTextInputView.backgroundColor = [UIColor yellowColor];
 
     [self addSubview:_backedTextInputView];
   }
