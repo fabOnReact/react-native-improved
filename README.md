@@ -2,7 +2,7 @@
 
 Provides react-native components with different fixes (only tested on the old architecture):
 
-- TextImproved https://github.com/facebook/react-native/pull/41770
+- TextImproved includes fixes PR https://github.com/facebook/react-native/issues/39722
 
 ## Set-up
 
