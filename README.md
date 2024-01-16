@@ -36,9 +36,6 @@ yarn add react-native-improved
 import { TextImproved } from 'react-native-improved';
 
 // The TextImproved component includes several react-native fixes
-
-fixes;
-
 function App() {
   return <TextImproved>A new text with additional fixes</TextImproved>;
 }
