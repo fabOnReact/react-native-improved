@@ -37,8 +37,16 @@ import { TextImproved } from 'react-native-improved';
 
 // The TextImproved component includes several react-native fixes
 
-<TextImproved>A new text with additional fixes</TextImproved>;
+fixes;
+
+function App() {
+  return <TextImproved>A new text with additional fixes</TextImproved>;
+}
 ```
+
+## Feature Requests
+
+If you want to ask for additional features in this library, you can open an [issue](https://github.com/fabriziobertoglio1987/react-native-improved/issues). I follow-up with your request.
 
 ## Contributing
 
