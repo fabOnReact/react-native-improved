@@ -1,8 +1,10 @@
 # react-native-improved
 
-Provides react-native components with different fixes (old architecture). The library patches the original react-native Android implementation of the Text component without building it from source. The following patches are applied:
+Provides react-native components with different fixes (old architecture). The library patches the original react-native Android implementation of the Text component without building it from source.
 
-- TextImproved includes fix for issue https://github.com/facebook/react-native/issues/39722
+Use the `TextImproved` component instead of `Text` to apply the following patches:
+
+- TextImproved: Issue https://github.com/facebook/react-native/issues/39722
 
 ## Set-up
 
