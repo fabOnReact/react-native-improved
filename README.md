@@ -20,6 +20,8 @@ Then
 
 ## npm
 
+**IMPORTANT**: to be used requires to patch the react-native-renderer for dev and prop as done in this [file](https://github.com/fabriziobertoglio1987/react-native-improved/blob/main/example/patches/react-native%2B0.73.0%2B001%2Bfix-renderer-text-runtime.patch) with patch package.
+
 ```sh
 npm install react-native-improved
 ```
