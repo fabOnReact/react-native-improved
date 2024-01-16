@@ -35,7 +35,7 @@ import { TextImproved } from 'react-native-improved';
 
 // ...
 
-<TextImproved>A new text with additional fixes</Text>;
+<TextImproved>A new text with additional fixes</TextImproved>;
 ```
 
 ## Contributing
