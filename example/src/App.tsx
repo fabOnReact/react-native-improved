@@ -9,7 +9,7 @@ export default function App() {
   return (
     <View style={{ marginTop: 200 }}>
       <TextInput autoFocus={true}>React Native</TextInput>
-      <TextInputImproved style={{ lineHeight: 24 }} value="समुद्री उल्लू">
+      <TextInputImproved style={{ lineHeight: 23 }} text="dsfd">
         समुद्री उल्लू
       </TextInputImproved>
     </View>

@@ -28,12 +28,16 @@ RCT_CUSTOM_VIEW_PROPERTY(color, NSString, UIView)
   [view setBackgroundColor: [Utils hexStringToColor:json]];
 }
 
+// adding this will remove the text in the TextInput
+/*
 - (RCTShadowView *)shadowView
 {
   TextViewShadowView *shadowView = [[TextViewShadowView alloc] initWithBridge:self.bridge];
   [_shadowViews addObject:shadowView];
   return shadowView;
 }
+*/
+
 
 - (void)setBridge:(RCTBridge *)bridge
 {
