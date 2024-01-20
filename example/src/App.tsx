@@ -10,13 +10,13 @@ export default function App() {
     <>
       <View style={styles.container}>
         <View style={styles.flexBrokenStyle}>
-          <TextImproved
+          <Text
             textBreakStrategy="simple"
             style={styles.parentText}
             numberOfLines={1}
           >
             {email}
-          </TextImproved>
+          </Text>
         </View>
         <TextInput style={styles.input} />
         <Text>Normal Text</Text>

@@ -11063,6 +11063,8 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
+  bin:
+    rn-networking-patch: patch.js
   languageName: unknown
   linkType: soft
 
