@@ -173,6 +173,7 @@ function InternalTextInput(props) {
   const ref = useMergeRefs(setLocalRef, props.forwardedRef);
 
   const _onChange = (event) => {
+    console.log('onChange');
     const currentText = event.nativeEvent.text;
     props.onChange && props.onChange(event);
     props.onChangeText && props.onChangeText(currentText);
