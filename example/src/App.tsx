@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import { TextImproved } from 'react-native-improved';
 
 export default function App() {
   const email =

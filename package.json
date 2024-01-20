@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "bin": {
-    "rn-networking-patch": "patch.js"
+    "react-native-patch": "patch.js"
   },
   "scripts": {
     "example": "yarn workspace react-native-improved-example",
@@ -37,7 +37,8 @@
     "prepare": "bob build",
     "release": "release-it",
     "patch": "node patch.js",
-    "postinstall": "yarn run patch"
+    "patch-dev": "node patch-dev.js",
+    "postinstall": "yarn run patch-dev"
   },
   "keywords": [
     "react-native",

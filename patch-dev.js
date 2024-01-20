@@ -11,7 +11,11 @@ const rootPath = path.join(__dirname, '.');
 // ============================================================================
 // Get RN version
 // ============================================================================
-const RNRootPath = path.join(__dirname, '..', 'react-native');
+const RNRootPath = path.join(
+  __dirname,
+  './example/node_modules',
+  'react-native'
+);
 
 const RNPackageFile = `${RNRootPath}/package.json`;
 if (!fs.existsSync(RNPackageFile)) {
