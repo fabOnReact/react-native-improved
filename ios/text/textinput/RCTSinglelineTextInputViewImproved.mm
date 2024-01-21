@@ -30,6 +30,7 @@
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
+  NSLog(@"RCTSinglelineTextInputViewImproved initWithBridge");
   if (self = [super initWithBridge:bridge]) {
     // `submitBehavior` defaults to `"blurAndSubmit"` for <TextInput multiline={false}> by design.
     self.submitBehavior = @"blurAndSubmit";
