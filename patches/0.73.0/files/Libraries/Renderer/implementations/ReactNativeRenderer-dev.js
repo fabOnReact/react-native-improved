@@ -5512,6 +5512,7 @@ to return true:wantsResponderID|                            |
         type === 'RCTText' ||
         type === 'RCTTextImproved' ||
         type === 'RCTTextInputImproved' ||
+        type === 'RCTSinglelineTextInputViewImproved' ||
         type === 'RCTVirtualText';
 
       if (prevIsInAParentText !== isInAParentText) {

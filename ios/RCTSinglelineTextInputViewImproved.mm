@@ -11,23 +11,33 @@
 
 #import <React/RCTUITextView.h>
 
-#import "TextView.h"
+#import "RCTSinglelineTextInputViewImproved.h"
 
 #import "Utils.h"
 
 #import <React/RCTUITextView.h>
+#import <React/RCTSinglelineTextInputView.h>
 
-@implementation TextView {
-  RCTUITextView *_backedTextInputView;
+#import <React/RCTSinglelineTextInputView.h>
+
+#import <React/RCTBridge.h>
+
+#import <React/RCTUITextField.h>
+
+@implementation RCTSinglelineTextInputViewImproved {
+  RCTUITextField *_backedTextInputView;
 }
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
+  NSLog(@"TESTING RCTSinglelineTextInputViewImproved initWithBridge");
   if (self = [super initWithBridge:bridge]) {
-    _backedTextInputView = [[RCTUITextView alloc] initWithFrame:self.bounds];
+    // `submitBehavior` defaults to `"blurAndSubmit"` for <TextInput multiline={false}> by design.
+    self.submitBehavior = @"blurAndSubmit";
+
+    _backedTextInputView = [[RCTUITextField alloc] initWithFrame:self.bounds];
     _backedTextInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _backedTextInputView.textInputDelegate = self;
-    _backedTextInputView.backgroundColor = [UIColor yellowColor];
 
     [self addSubview:_backedTextInputView];
   }

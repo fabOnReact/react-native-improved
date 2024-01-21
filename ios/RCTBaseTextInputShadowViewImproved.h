@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TextViewShadowView : RCTBaseTextInputShadowView
+@interface RCTBaseTextInputShadowViewImproved : RCTBaseTextInputShadowView
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
 

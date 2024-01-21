@@ -7,7 +7,7 @@
 
 #import <React/RCTBaseTextInputView.h>
 #import "NSTextStorage+FontScaling.h"
-#import "TextViewShadowView.h"
+#import "RCTBaseTextInputShadowViewImproved.h"
 #import <React/RCTBaseTextInputShadowView.h>
 
 #import <React/RCTBridge.h>
@@ -18,7 +18,7 @@
 #import <React/RCTBaseTextInputView.h>
 #import "NSTextStorage+FontScaling.h"
 
-@implementation TextViewShadowView {
+@implementation RCTBaseTextInputShadowViewImproved {
   __weak RCTBridge *_bridge;
   NSAttributedString *_Nullable _previousAttributedText;
   BOOL _needsUpdateView;
@@ -357,7 +357,7 @@ static YGSize RCTBaseTextInputShadowViewMeasure(
 
 static float RCTTextInputShadowViewBaseline(YGNodeConstRef node, const float width, const float height)
 {
-  TextViewShadowView *shadowTextView = (__bridge RCTBaseTextInputShadowView *)YGNodeGetContext(node);
+  RCTBaseTextInputShadowViewImproved *shadowTextView = (__bridge RCTBaseTextInputShadowView *)YGNodeGetContext(node);
 
   CGSize size = (CGSize){RCTCoreGraphicsFloatFromYogaFloat(width), RCTCoreGraphicsFloatFromYogaFloat(height)};
 
