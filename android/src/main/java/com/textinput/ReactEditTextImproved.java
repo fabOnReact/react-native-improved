@@ -7,12 +7,19 @@
 
 package com.textinput;
 
+import android.util.Log;
 import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.views.text.ReactTextUpdate;
 import com.facebook.react.views.textinput.ReactEditText;
 
 public class ReactEditTextImproved extends ReactEditText {
 
   public ReactEditTextImproved(ReactContext context) {
     super(context);
+  }
+
+  public void maybeSetText(ReactTextUpdate reactTextUpdate) {
+    super.maybeSetText(reactTextUpdate);
+    Log.w("TESTING", "ReactEditTextImproved => maybeSetText");
   }
 }

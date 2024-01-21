@@ -2,9 +2,18 @@ import * as React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
 export function TextInputScreen() {
+  const [text, setText] = React.useState('');
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input}>Hello World</TextInput>
+      <TextInput
+        onChangeText={(text) => {
+          console.log('onChangeText text is: ', text);
+          setText(text);
+        }}
+        style={styles.input}
+      >
+        {text}
+      </TextInput>
     </View>
   );
 }
