@@ -5511,6 +5511,7 @@ to return true:wantsResponderID|                            |
         type === 'RCTSinglelineTextInputView' || // iOS
         type === 'RCTText' ||
         type === 'RCTTextImproved' ||
+        type === 'RCTTextInputImproved' ||
         type === 'RCTVirtualText';
 
       if (prevIsInAParentText !== isInAParentText) {
