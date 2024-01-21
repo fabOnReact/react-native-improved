@@ -1,6 +1,6 @@
 {
   "name": "react-native-improved",
-  "version": "0.1.1",
+  "version": "0.1.8",
   "description": "Improved React Native Components",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -25,6 +25,9 @@
     "!**/__mocks__",
     "!**/.*"
   ],
+  "bin": {
+    "react-native-patch": "patch.js"
+  },
   "scripts": {
     "example": "yarn workspace react-native-improved-example",
     "test": "jest",
@@ -32,7 +35,10 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "patch": "node patch.js",
+    "patch-dev": "node patch-dev.js",
+    "postinstall": "yarn run patch-dev"
   },
   "keywords": [
     "react-native",
@@ -54,7 +60,6 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
-    "@evilmartians/lefthook": "^1.5.0",
     "@react-native/eslint-config": "^0.72.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",

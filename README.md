@@ -1,25 +1,36 @@
 # react-native-improved
 
-Provides react-native components with different fixes.
-Currently supports only the old architecture.
+Provides different react-native iOS, Android and JS API fixes/PRs.
 
-## Installation
+- Text: Issue https://github.com/facebook/react-native/issues/39722
 
-**IMPORTANT**: to use this package you need to apply a patch to react-native-renderer for dev and prod. The patch is available [here](https://github.com/fabriziobertoglio1987/react-native-improved/blob/main/example/patches/react-native%2B0.73.0%2B001%2Bfix-renderer-text-runtime.patch) and is applied with patch-package to react-native 0.73. There is a facebook/react PR to address this issue.
+## Set-up
+
+In package.json
+
+```diff
+ "scripts": {
++  "postinstall": "yarn patch"
+ }
+```
+
+Then
+
+## npm
 
 ```sh
 npm install react-native-improved
 ```
 
-## Usage
+## yarn
 
-```js
-import { TextImproved } from 'react-native-improved';
-
-// ...
-
-<TextImproved>A new text with additional fixes</Text>;
+```sh
+yarn add react-native-improved
 ```
+
+## Feature Requests
+
+If you want to ask for additional features in this library, you can open an [issue](https://github.com/fabriziobertoglio1987/react-native-improved/issues). I follow-up with your request.
 
 ## Contributing
 
