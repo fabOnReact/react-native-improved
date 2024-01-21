@@ -38,7 +38,7 @@
     "release": "release-it",
     "patch": "node patch.js",
     "patch-dev": "node patch-dev.js",
-    "postinstall": "yarn run patch-dev"
+    "postinstall": "yarn run patch"
   },
   "keywords": [
     "react-native",
