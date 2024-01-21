@@ -32,10 +32,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
-    "release": "release-it",
-    "patch": "node patch.js",
-    "patch-dev": "node patch-dev.js",
-    "postinstall": "yarn run patch-dev"
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
