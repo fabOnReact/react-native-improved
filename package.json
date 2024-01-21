@@ -36,8 +36,8 @@
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
     "release": "release-it",
-    "patch": "node patch.js",
-    "patch-dev": "node patch-dev.js",
+    "patch": "node src/patch.js",
+    "patch-dev": "node src/patch-dev.js",
     "postinstall": "yarn run patch"
   },
   "keywords": [

@@ -13,7 +13,7 @@ const rootPath = path.join(__dirname, '.');
 // ============================================================================
 const RNRootPath = path.join(
   __dirname,
-  './example/node_modules',
+  '../example/node_modules',
   'react-native'
 );
 
