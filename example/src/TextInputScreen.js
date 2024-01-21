@@ -6,6 +6,7 @@ export function TextInputScreen() {
   return (
     <View style={styles.container}>
       <TextInput
+        numberOfLines={1}
         onChangeText={(text) => {
           console.log('onChangeText text is: ', text);
           setText(text);
