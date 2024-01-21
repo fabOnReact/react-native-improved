@@ -11052,8 +11052,6 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
-  bin:
-    react-native-patch: patch.js
   languageName: unknown
   linkType: soft
 

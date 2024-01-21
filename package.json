@@ -25,9 +25,6 @@
     "!**/__mocks__",
     "!**/.*"
   ],
-  "bin": {
-    "react-native-patch": "patch.js"
-  },
   "scripts": {
     "example": "yarn workspace react-native-improved-example",
     "test": "jest",

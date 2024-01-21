@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-improved": ["./src/index"]
+      "react-native-text": ["./src/index"]
     },
     "allowUnreachableCode": true,
     "allowUnusedLabels": true,
