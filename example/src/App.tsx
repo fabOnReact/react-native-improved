@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ScrollView, View, StyleSheet, Text, TextInput } from 'react-native';
 import { TextScreen } from './TextScreen';
+import { TextInputScreen } from './TextInputScreen';
 
 export default function App() {
   const email =
@@ -10,7 +11,8 @@ export default function App() {
 }
 
 function CurrentScreen() {
-  return <TextScreen />;
+  // return <TextScreen />;
+  return <TextInputScreen />;
 }
 
 const styles = StyleSheet.create({});

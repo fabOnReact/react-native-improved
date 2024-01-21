@@ -39,6 +39,7 @@ def supportsNamespace() {
 android {
   if (supportsNamespace()) {
     namespace "com.text"
+    namespace "com.textinput"
 
     sourceSets {
       main {
