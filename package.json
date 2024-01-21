@@ -1,6 +1,6 @@
 {
   "name": "react-native-improved",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Improved React Native Components",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
