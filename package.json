@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "bin": {
-    "react-native-patch": "src/patch.js"
+    "react-native-patch": "./node_modules/react-native-improved/src/patch.js"
   },
   "scripts": {
     "example": "yarn workspace react-native-improved-example",
