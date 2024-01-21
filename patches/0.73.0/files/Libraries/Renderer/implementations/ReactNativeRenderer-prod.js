@@ -3455,6 +3455,7 @@ function pushHostContext(fiber) {
     'RCTText' === JSCompiler_inline_result ||
     'RCTTextImproved' === JSCompiler_inline_result ||
     'RCTTextInputImproved' === JSCompiler_inline_result ||
+    'RCTSinglelineTextInputViewImproved' === JSCompiler_inline_result ||
     'RCTVirtualText' === JSCompiler_inline_result;
   JSCompiler_inline_result =
     context.isInAParentText !== JSCompiler_inline_result
