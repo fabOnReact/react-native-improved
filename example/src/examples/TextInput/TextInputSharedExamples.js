@@ -119,9 +119,8 @@ class RewriteExample extends React.Component<$FlowFixMeProps, any> {
           testID="rewrite_sp_underscore_input"
           autoCorrect={false}
           multiline={false}
-          maxLength={limit}
           onChangeText={text => {
-            text = text.replace(/ /g, '_');
+            text = text.replace(/ /g, '_').toUpperCase();
             this.setState({text});
           }}
           style={styles.default}
@@ -849,7 +848,7 @@ module.exports = ([
   },
   {
     name: 'maxLength',
-    title: "Live Re-Write (<sp>  ->  '_') + maxLength",
+    title: "Live Re-Write (<sp>  ->  '_') + autoCapitalize",
     render: function (): React.Node {
       return <RewriteExample />;
     },
