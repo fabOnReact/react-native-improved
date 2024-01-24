@@ -56,10 +56,6 @@ const Components: Array<RNTesterModuleInfo> = [
     module: require('../examples/Modal/ModalExample'),
   },
   {
-    key: 'NewAppScreenExample',
-    module: require('../examples/NewAppScreen/NewAppScreenExample'),
-  },
-  {
     key: 'PressableExample',
     module: require('../examples/Pressable/PressableExample'),
   },
@@ -136,11 +132,6 @@ const Components: Array<RNTesterModuleInfo> = [
     category: 'Basic',
   },
   {
-    key: 'NewArchitectureExample',
-    category: 'UI',
-    module: require('../examples/NewArchitecture/NewArchitectureExample'),
-  },
-  {
     key: 'PerformanceComparisonExample',
     category: 'Basic',
     module: require('../examples/Performance/PerformanceComparisonExample'),
@@ -155,11 +146,6 @@ const APIs: Array<RNTesterModuleInfo> = ([
   {
     key: 'AccessibilityIOSExample',
     module: require('../examples/Accessibility/AccessibilityIOSExample'),
-    category: 'iOS',
-  },
-  {
-    key: 'ActionSheetIOSExample',
-    module: require('../examples/ActionSheetIOS/ActionSheetIOSExample'),
     category: 'iOS',
   },
   {
@@ -271,28 +257,12 @@ const APIs: Array<RNTesterModuleInfo> = ([
     module: require('../examples/Share/ShareExample'),
   },
   {
-    key: 'SnapshotExample',
-    module: require('../examples/Snapshot/SnapshotExample'),
-  },
-  {
     key: 'TimerExample',
     module: require('../examples/Timer/TimerExample'),
   },
   {
     key: 'TransformExample',
     module: require('../examples/Transform/TransformExample'),
-  },
-  {
-    key: 'TurboModuleExample',
-    module: require('../examples/TurboModule/TurboModuleExample'),
-  },
-  {
-    key: 'LegacyModuleExample',
-    module: require('../examples/TurboModule/LegacyModuleExample'),
-  },
-  {
-    key: 'TurboCxxModuleExample',
-    module: require('../examples/TurboModule/TurboCxxModuleExample'),
   },
   {
     key: 'VibrationExample',
