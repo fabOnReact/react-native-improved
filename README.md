@@ -5,7 +5,7 @@ Provides different react-native iOS, Android and JS API fixes/PRs.
 - Text: PR https://github.com/facebook/react-native/pull/41770
 - TextInput: PR https://github.com/facebook/react-native/pull/29070
 
-The library is still Work In Progress.
+**The library is still Work In Progress**.
 
 ## Set-up
 
