@@ -2,9 +2,34 @@
 
 Provides different react-native iOS, Android and JS API fixes/PRs.
 
-- Text: Issue https://github.com/facebook/react-native/issues/39722
+- Text: PR https://github.com/facebook/react-native/pull/41770
+- TextInput: PR https://github.com/facebook/react-native/pull/29070
 
-The library is still Work In Progress.
+**The library is still Work In Progress**.
+
+## Set-up
+
+In package.json
+
+```diff
+ "scripts": {
++  "postinstall": "yarn patch"
+ }
+```
+
+Then
+
+## npm
+
+```sh
+npm install react-native-improved
+```
+
+## yarn
+
+```sh
+yarn add react-native-improved
+```
 
 ## License
 
