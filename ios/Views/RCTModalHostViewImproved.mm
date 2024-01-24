@@ -27,22 +27,13 @@
   RCTDirectEventBlock _onRequestClose;
 }
 
+RCT_NOT_IMPLEMENTED(-(instancetype)initWithFrame : (CGRect)frame)
+RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
+
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
-  if ((self = [super initWithFrame:CGRectZero])) {
-    _bridge = bridge;
-    _modalViewController = [RCTModalHostViewController new];
-    UIView *containerView = [UIView new];
-    containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _modalViewController.view = containerView;
-    _touchHandler = [[RCTTouchHandler alloc] initWithBridge:bridge];
-    _isPresented = NO;
-
-    /*__weak typeof(self) weakSelf = self;
-    _modalViewController.boundsDidChangeBlock = ^(CGRect newBounds) {
-      [weakSelf notifyForBoundsChange:newBounds];
-    };*/
-  }
+  NSLog(@"RCTModalHostViewImproved init");
+  self = [super initWithBridge:bridge];
 
   return self;
 }
