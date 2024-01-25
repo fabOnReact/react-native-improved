@@ -44,7 +44,6 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 - (void)dismissModalViewControllerWithCompletion:(void (^)(void))completion
 {
   if (_isPresented) {
-    [self.delegate dismissModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
     [self.delegate dismissModalHostViewWithCompletion:self withViewController:_modalViewController animated:[self hasAnimationType] completion: completion];
     _isPresented = NO;
   }
