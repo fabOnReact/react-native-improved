@@ -116,9 +116,13 @@ RCT_EXPORT_MODULE()
   [self dismissModalHostViewWithCompletion:modalHostView withViewController:viewController animated:animated completion:nil];
 }
 
-// Over-ride this method to add custom shadow view
-// - (RCTShadowView *)shadowView
-// {
-//  return [RCTModalHostShadowView new];
-// }
+/**
+Over-ride this method to add change the React Native Shadow View for this class.
+
+- (RCTShadowView *)shadowView
+{
+ return [RCTModalHostShadowViewImproved new];
+}
+**/
+
 @end
