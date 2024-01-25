@@ -109,11 +109,16 @@ RCT_EXPORT_MODULE()
   });
 }
 
-/* Over-ride this method to add custom shadow view
-- (RCTShadowView *)shadowView
+- (void)dismissModalHostView:(RCTModalHostView *)modalHostView
+          withViewController:(RCTModalHostViewController *)viewController
+                    animated:(BOOL)animated
 {
-  return [RCTModalHostShadowView new];
+  [self dismissModalHostViewWithCompletion:modalHostView withViewController:viewController animated:animated completion:nil];
 }
-*/
 
+// Over-ride this method to add custom shadow view
+// - (RCTShadowView *)shadowView
+// {
+//  return [RCTModalHostShadowView new];
+// }
 @end
