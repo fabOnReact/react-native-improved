@@ -7,10 +7,10 @@
 
 #import <UIKit/UIKit.h>
 #import "RCTModalHostViewController.h"
-#import "RCTModalHostView.h"
+#import "RCTModalHostViewImproved.h"
 
 @interface RCTModalHostViewControllerImproved : RCTModalHostViewController
 
-@property RCTModalHostView* modalHostView;
+@property RCTModalHostViewImproved* modalHostView;
 
 @end

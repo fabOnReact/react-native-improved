@@ -25,10 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RCTModalHostViewInteractorImproved <NSObject>
 
-- (void)dismissModalHostView:(RCTModalHostView *)modalHostView
+- (void)dismissModalHostView:(RCTModalHostViewImproved *)modalHostView
           withViewController:(RCTModalHostViewController *)viewController
                     animated:(BOOL)animated;
-- (void)dismissModalHostViewWithCompletion:(RCTModalHostView *)modalHostView
+- (void)dismissModalHostViewWithCompletion:(RCTModalHostViewImproved *)modalHostView
                         withViewController:(RCTModalHostViewController *)viewController
                                   animated:(BOOL)animated completion: (void (^)(void))completion;
 
