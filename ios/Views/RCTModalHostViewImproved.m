@@ -10,6 +10,7 @@
 #import "RCTAssert.h"
 #import "RCTBridge.h"
 #import "RCTModalHostViewControllerImproved.h"
+#import "RCTModalHostView.h"
 #import "RCTTouchHandler.h"
 #import "RCTUIManager.h"
 #import "RCTUtils.h"
@@ -46,6 +47,34 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
   if (_isPresented) {
     [self.delegate dismissModalHostViewWithCompletion:self withViewController:_modalViewController animated:[self hasAnimationType] completion: completion];
     _isPresented = NO;
+  }
+}
+
+
+- (void)setVisible:(BOOL)visible
+{
+  [super setVisible:visible];
+  BOOL shouldBePresented = !_isPresented && self.visible && self.window;
+  if (shouldBePresented) {
+    _isPresented = YES;
+  }
+}
+
+- (void)didMoveToWindow
+{
+  [super didMoveToWindow];
+  BOOL shouldBePresented = !_isPresented && self.visible && self.window;
+  if (shouldBePresented) {
+    _isPresented = YES;
+  }
+}
+
+- (void)didMoveToSuperview
+{
+  [super didMoveToSuperview];
+  BOOL shouldBePresented = !_isPresented && self.visible && self.window;
+  if (shouldBePresented) {
+    _isPresented = YES;
   }
 }
 
