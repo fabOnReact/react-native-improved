@@ -35,6 +35,13 @@ RCT_EXPORT_MODULE()
   return view;
 }
 
+- (void)dismissModalHostViewWithCompletion:(RCTModalHostView *)modalHostView
+                        withViewController:(RCTModalHostViewController *)viewController
+                                  animated:(BOOL)animated completion:(void (^)(void))completion
+{
+  NSLog(@"dismissModalHostViewWithCompletion");
+}
+
 /* Over-ride this method to add custom shadow view
 - (RCTShadowView *)shadowView
 {

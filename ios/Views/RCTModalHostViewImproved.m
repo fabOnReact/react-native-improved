@@ -11,7 +11,7 @@
 
 #import "RCTAssert.h"
 #import "RCTBridge.h"
-#import "RCTModalHostViewController.h"
+#import "RCTModalHostViewControllerImproved.h"
 #import "RCTTouchHandler.h"
 #import "RCTUIManager.h"
 #import "RCTUtils.h"
@@ -20,7 +20,7 @@
 @implementation RCTModalHostViewImproved {
   __weak RCTBridge *_bridge;
   BOOL _isPresented;
-  RCTModalHostViewController *_modalViewController;
+  RCTModalHostViewControllerImproved *_modalViewController;
   RCTTouchHandler *_touchHandler;
   UIView *_reactSubview;
   UIInterfaceOrientation _lastKnownOrientation;
@@ -32,10 +32,29 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
-  NSLog(@"RCTModalHostViewImproved init");
   self = [super initWithBridge:bridge];
+  _modalViewController.modalHostView = self;
 
   return self;
+}
+
+- (void)dismissModalViewController
+{
+  [self dismissModalViewControllerWithCompletion: nil];
+}
+
+- (void)dismissModalViewControllerWithCompletion:(void (^)(void))completion
+{
+  if (_isPresented) {
+    [self.delegate dismissModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
+    [self.delegate dismissModalHostViewWithCompletion:self withViewController:_modalViewController animated:[self hasAnimationType] completion: completion];
+    _isPresented = NO;
+  }
+}
+
+- (BOOL)hasAnimationType
+{
+  return ![self.animationType isEqualToString:@"none"];
 }
 
 @end
