@@ -34,11 +34,10 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "prepare": "bob build",
+    "postinstall": "yarn run react-native-patch",
     "release": "release-it",
     "patch": "node src/patch.js",
-    "patch-dev": "node src/patch-dev.js",
-    "postinstall": "yarn run patch-dev"
+    "patch-dev": "node src/patch-dev.js"
   },
   "keywords": [
     "react-native",
@@ -90,7 +89,6 @@
   "workspaces": [
     "example"
   ],
-  "packageManager": "yarn@3.6.1",
   "engines": {
     "node": ">= 18.0.0"
   },
@@ -171,5 +169,6 @@
     "name": "RNTextViewSpec",
     "type": "components",
     "jsSrcsDir": "src"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
