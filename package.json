@@ -169,6 +169,5 @@
     "name": "RNTextViewSpec",
     "type": "components",
     "jsSrcsDir": "src"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
