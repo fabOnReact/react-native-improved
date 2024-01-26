@@ -40,7 +40,7 @@ yarn add react-native-improved --dev
 yarn add react-native-improved --dev
 ```
 
-create a file `.yarnrc.yml` with:
+create a file `.yarnrc.yml` (or add to your existing one) with:
 
 ```
 nodeLinker: node-modules
