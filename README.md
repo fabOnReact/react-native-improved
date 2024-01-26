@@ -1,7 +1,8 @@
 # react-native-improved
 
 
-**Supports only react-native 0.73** ([#18](https://github.com/fabOnReact/react-native-improved/issues/18)).
+- **Supports ONLY react-native 0.73**.
+- Support for other versions will be added in the future ([#18](https://github.com/fabOnReact/react-native-improved/issues/18)).
 
 Provides different react-native iOS, Android and JS API fixes/PRs.
 
@@ -15,7 +16,7 @@ In package.json
 
 ```diff
  "scripts": {
-+  "postinstall": "yarn patch"
++  "postinstall": "yarn run react-native-patch"
  }
 ```
 
@@ -24,13 +25,25 @@ Then
 ## npm
 
 ```sh
-npm install react-native-improved
+npm install react-native-improved --save-dev
 ```
 
-## yarn
+## yarn v1
 
 ```sh
-yarn add react-native-improved
+yarn add react-native-improved --dev
+```
+
+## yarn v2, v3, v4
+
+```sh
+yarn add react-native-improved --dev
+```
+
+create a file `.yarnrc.yml` with:
+
+```
+nodeLinker: node-modules
 ```
 
 ## Feature Requests
