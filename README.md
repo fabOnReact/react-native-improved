@@ -28,10 +28,22 @@ Then
 npm install react-native-improved --save-dev
 ```
 
-## yarn
+## yarn v1
 
 ```sh
 yarn add react-native-improved --dev
+```
+
+## yarn v2, v3, v4
+
+```sh
+yarn add react-native-improved --dev
+```
+
+create a file `.yarnrc.yml` with:
+
+```
+nodeLinker: node-modules
 ```
 
 ## Feature Requests
