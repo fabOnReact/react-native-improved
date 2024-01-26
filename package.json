@@ -34,7 +34,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "postinstall": "yarn run react-native-patch",
+    "postinstall": "yarn patch-dev",
     "release": "release-it",
     "patch": "node src/patch.js",
     "patch-dev": "node src/patch-dev.js"
