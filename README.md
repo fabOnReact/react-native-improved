@@ -16,7 +16,7 @@ In package.json
 
 ```diff
  "scripts": {
-+  "postinstall": "yarn patch"
++  "postinstall": "yarn run react-native-patch"
  }
 ```
 
@@ -25,13 +25,13 @@ Then
 ## npm
 
 ```sh
-npm install react-native-improved
+npm install react-native-improved --save-dev
 ```
 
 ## yarn
 
 ```sh
-yarn add react-native-improved
+yarn add react-native-improved --dev
 ```
 
 ## Feature Requests
