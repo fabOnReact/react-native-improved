@@ -11,6 +11,4 @@
 
 @interface RCTModalHostViewControllerImproved : RCTModalHostViewController
 
-@property RCTModalHostViewImproved* modalHostView;
-
 @end

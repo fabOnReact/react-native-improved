@@ -32,55 +32,24 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
   self = [super initWithBridge:bridge];
-  _modalViewController.modalHostView = self;
+  _modalViewController = [RCTModalHostViewControllerImproved new];
+  UIView *containerView = [UIView new];
+  containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+  _modalViewController.view = containerView;
+  _touchHandler = [[RCTTouchHandler alloc] initWithBridge:bridge];
+  _isPresented = NO;
 
   return self;
 }
 
+/*
 - (void)dismissModalViewController
 {
-  [self dismissModalViewControllerWithCompletion: nil];
+ if (_isPresented) {
+ [_delegate dismissModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
+ _isPresented = NO;
+ }
 }
-
-- (void)dismissModalViewControllerWithCompletion:(void (^)(void))completion
-{
-  if (_isPresented) {
-    [self.delegate dismissModalHostViewWithCompletion:self withViewController:_modalViewController animated:[self hasAnimationType] completion: completion];
-    _isPresented = NO;
-  }
-}
-
-
-- (void)setVisible:(BOOL)visible
-{
-  [super setVisible:visible];
-  BOOL shouldBePresented = !_isPresented && self.visible && self.window;
-  if (shouldBePresented) {
-    _isPresented = YES;
-  }
-}
-
-- (void)didMoveToWindow
-{
-  [super didMoveToWindow];
-  BOOL shouldBePresented = !_isPresented && self.visible && self.window;
-  if (shouldBePresented) {
-    _isPresented = YES;
-  }
-}
-
-- (void)didMoveToSuperview
-{
-  [super didMoveToSuperview];
-  BOOL shouldBePresented = !_isPresented && self.visible && self.window;
-  if (shouldBePresented) {
-    _isPresented = YES;
-  }
-}
-
-- (BOOL)hasAnimationType
-{
-  return ![self.animationType isEqualToString:@"none"];
-}
+*/
 
 @end
