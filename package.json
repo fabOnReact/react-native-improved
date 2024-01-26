@@ -34,10 +34,11 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "postinstall": "yarn patch-dev",
+    "prepare": "bob build",
     "release": "release-it",
     "patch": "node src/patch.js",
-    "patch-dev": "node src/patch-dev.js"
+    "patch-dev": "node src/patch-dev.js",
+    "postinstall": "yarn patch-dev"
   },
   "keywords": [
     "react-native",
