@@ -19,7 +19,7 @@
 @implementation RCTModalHostViewImproved {
   __weak RCTBridge *_bridge;
   BOOL _isPresented;
-  RCTModalHostViewControllerImproved *_modalViewController;
+  RCTModalHostViewController *_modalViewController;
   RCTTouchHandler *_touchHandler;
   UIView *_reactSubview;
   UIInterfaceOrientation _lastKnownOrientation;
@@ -32,7 +32,7 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
   self = [super initWithBridge:bridge];
-  _modalViewController = [RCTModalHostViewControllerImproved new];
+  _modalViewController = [RCTModalHostViewController new];
   UIView *containerView = [UIView new];
   containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   _modalViewController.view = containerView;
@@ -42,14 +42,32 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
   return self;
 }
 
-/*
+- (void)ensurePresentedOnlyIfNeeded
+{
+  BOOL shouldBePresented = !_isPresented && super.visible && self.window;
+  if (shouldBePresented) {
+    RCTAssert(self.reactViewController, @"Can't present modal view controller without a presenting view controller");
+
+    [self.delegate presentModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
+    _isPresented = YES;
+  }
+
+  BOOL shouldBeHidden = _isPresented && (!super.visible || !self.superview);
+  if (shouldBeHidden) {
+    [self dismissModalViewController];
+  }
+}
+
 - (void)dismissModalViewController
 {
- if (_isPresented) {
- [_delegate dismissModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
- _isPresented = NO;
- }
+  if (_isPresented) {
+    [self.delegate dismissModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
+    _isPresented = NO;
+  }
 }
-*/
 
+- (BOOL)hasAnimationType
+{
+  return ![self.animationType isEqualToString:@"none"];
+}
 @end

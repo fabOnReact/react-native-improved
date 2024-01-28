@@ -37,6 +37,34 @@ RCT_EXPORT_MODULE()
   return view;
 }
 
+- (void)presentModalHostView:(RCTModalHostViewImproved *)modalHostView
+          withViewController:(RCTModalHostViewControllerImproved *)viewController
+                    animated:(BOOL)animated
+{
+  dispatch_block_t completionBlock = ^{
+    if (modalHostView.onShow) {
+      modalHostView.onShow(nil);
+    }
+  };
+  [[modalHostView reactViewController] presentViewController:viewController
+                                                        animated:animated
+                                                      completion:completionBlock];
+}
+
+- (void)dismissModalHostView:(RCTModalHostViewImproved *)modalHostView
+          withViewController:(RCTModalHostViewControllerImproved *)viewController
+                    animated:(BOOL)animated
+{
+  dispatch_block_t completionBlock = ^{
+    if (modalHostView.identifier) {
+      [[self.bridge moduleForClass:[RCTModalManager class]] modalDismissed:modalHostView.identifier];
+    }
+  };
+  [[modalHostView reactViewController] presentViewController:viewController
+                                                    animated:animated
+                                                  completion:completionBlock];
+}
+
 /**
 Over-ride this method to add change the React Native Shadow View for this class.
 
