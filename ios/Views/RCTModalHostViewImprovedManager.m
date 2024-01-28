@@ -10,8 +10,21 @@
 #import "RCTModalHostViewImproved.h"
 #import "RCTShadowView.h"
 #import "RCTModalManager.h"
+#import "RCTModalHostViewManager.h"
 
-@interface RCTModalHostShadowView : RCTShadowView
+@interface RCTModalHostShadowViewImproved : RCTShadowView
+
+@end
+
+@implementation RCTModalHostShadowViewImproved
+
+- (void)insertReactSubview:(id<RCTComponent>)subview atIndex:(NSInteger)atIndex
+{
+  [super insertReactSubview:subview atIndex:atIndex];
+  if ([subview isKindOfClass:[RCTShadowView class]]) {
+    ((RCTShadowView *)subview).size = RCTScreenSize();
+  }
+}
 
 @end
 
@@ -37,6 +50,7 @@ RCT_EXPORT_MODULE()
   return view;
 }
 
+/*
 - (void)presentModalHostView:(RCTModalHostViewImproved *)modalHostView
           withViewController:(RCTModalHostViewControllerImproved *)viewController
                     animated:(BOOL)animated
@@ -46,9 +60,16 @@ RCT_EXPORT_MODULE()
       modalHostView.onShow(nil);
     }
   };
-  [[modalHostView reactViewController] presentViewController:viewController
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (self.presentationBlock) {
+      self.presentationBlock([modalHostView reactViewController], viewController, animated, completionBlock);
+    } else {
+      [[modalHostView reactViewController] presentViewController:viewController
                                                         animated:animated
                                                       completion:completionBlock];
+    }
+  });
 }
 
 - (void)dismissModalHostView:(RCTModalHostViewImproved *)modalHostView
@@ -64,14 +85,19 @@ RCT_EXPORT_MODULE()
                                                     animated:animated
                                                   completion:completionBlock];
 }
-
-/**
-Over-ride this method to add change the React Native Shadow View for this class.
+*/
 
 - (RCTShadowView *)shadowView
 {
- return [RCTModalHostShadowViewImproved new];
+  return [RCTModalHostShadowViewImproved new];
 }
-**/
+
+- (void)invalidate
+{
+  for (RCTModalHostView *hostView in _hostViews) {
+    [hostView invalidate];
+  }
+  _hostViews = nil;
+}
 
 @end

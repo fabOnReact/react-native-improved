@@ -42,12 +42,42 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
   return self;
 }
 
+- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
+{
+  [super insertReactSubview:subview atIndex:atIndex];
+  [_modalViewController.view insertSubview:subview atIndex:0];
+}
+
+- (void)removeReactSubview:(UIView *)subview
+{
+  RCTAssert(subview == _reactSubview, @"Cannot remove view other than modal view");
+  // Superclass (category) removes the `subview` from actual `superview`.
+  [super removeReactSubview:subview];
+  [_touchHandler detachFromView:subview];
+  _reactSubview = nil;
+}
+
+- (void)didUpdateReactSubviews
+{
+  // Do nothing, as subview (singular) is managed by `insertReactSubview:atIndex:`
+}
+
 - (void)ensurePresentedOnlyIfNeeded
 {
   BOOL shouldBePresented = !_isPresented && super.visible && self.window;
   if (shouldBePresented) {
     RCTAssert(self.reactViewController, @"Can't present modal view controller without a presenting view controller");
+    _modalViewController.supportedInterfaceOrientations = [self supportedOrientationsMask];
 
+    if ([self.animationType isEqualToString:@"fade"]) {
+      _modalViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    } else if ([self.animationType isEqualToString:@"slide"]) {
+      _modalViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    }
+    if (self.presentationStyle != UIModalPresentationNone) {
+      _modalViewController.modalPresentationStyle = self.presentationStyle;
+    }
+    _modalViewController.presentationController.delegate = self;
     [self.delegate presentModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
     _isPresented = YES;
   }
@@ -56,6 +86,33 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
   if (shouldBeHidden) {
     [self dismissModalViewController];
   }
+}
+
+- (UIInterfaceOrientationMask)supportedOrientationsMask
+{
+  if (self.supportedOrientations.count == 0) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+      return UIInterfaceOrientationMaskAll;
+    } else {
+      return UIInterfaceOrientationMaskPortrait;
+    }
+  }
+
+  UIInterfaceOrientationMask supportedOrientations = 0;
+  for (NSString *orientation in self.supportedOrientations) {
+    if ([orientation isEqualToString:@"portrait"]) {
+      supportedOrientations |= UIInterfaceOrientationMaskPortrait;
+    } else if ([orientation isEqualToString:@"portrait-upside-down"]) {
+      supportedOrientations |= UIInterfaceOrientationMaskPortraitUpsideDown;
+    } else if ([orientation isEqualToString:@"landscape"]) {
+      supportedOrientations |= UIInterfaceOrientationMaskLandscape;
+    } else if ([orientation isEqualToString:@"landscape-left"]) {
+      supportedOrientations |= UIInterfaceOrientationMaskLandscapeLeft;
+    } else if ([orientation isEqualToString:@"landscape-right"]) {
+      supportedOrientations |= UIInterfaceOrientationMaskLandscapeRight;
+    }
+  }
+  return supportedOrientations;
 }
 
 - (void)dismissModalViewController

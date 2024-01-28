@@ -12,6 +12,7 @@
 
 import * as React from 'react';
 import {
+  TouchableOpacity,
   Button,
   Modal,
   Platform,
@@ -49,8 +50,24 @@ function ModalPresentation() {
         <Text>This is first modal</Text>
         <Button
           title="dismiss first modal"
-          onPress={() => setFirstModalVisible(false)}
+          onPress={() => {
+            console.log('press button');
+            setFirstModalVisible(false);
+          }}
         />
+        <TouchableOpacity
+          onPress={() => console.log('touchable')}
+          style={{
+            backgroundColor: 'yellow',
+            height: 100,
+            width: 400,
+            borderWidth: 1,
+          }}
+        >
+    <Text>
+    Press ME
+    </Text>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
