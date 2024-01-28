@@ -50,7 +50,6 @@ RCT_EXPORT_MODULE()
   return view;
 }
 
-/*
 - (void)presentModalHostView:(RCTModalHostViewImproved *)modalHostView
           withViewController:(RCTModalHostViewControllerImproved *)viewController
                     animated:(BOOL)animated
@@ -81,11 +80,8 @@ RCT_EXPORT_MODULE()
       [[self.bridge moduleForClass:[RCTModalManager class]] modalDismissed:modalHostView.identifier];
     }
   };
-  [[modalHostView reactViewController] presentViewController:viewController
-                                                    animated:animated
-                                                  completion:completionBlock];
+  [viewController.presentingViewController dismissViewControllerAnimated:animated completion:completionBlock];
 }
-*/
 
 - (RCTShadowView *)shadowView
 {
