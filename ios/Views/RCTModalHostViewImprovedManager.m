@@ -12,22 +12,6 @@
 #import "RCTModalManager.h"
 #import "RCTModalHostViewManager.h"
 
-@interface RCTModalHostShadowViewImproved : RCTShadowView
-
-@end
-
-@implementation RCTModalHostShadowViewImproved
-
-- (void)insertReactSubview:(id<RCTComponent>)subview atIndex:(NSInteger)atIndex
-{
-  [super insertReactSubview:subview atIndex:atIndex];
-  if ([subview isKindOfClass:[RCTShadowView class]]) {
-    ((RCTShadowView *)subview).size = RCTScreenSize();
-  }
-}
-
-@end
-
 @interface RCTModalHostViewImprovedManager () <RCTModalHostViewInteractorImproved>
 
 @end
@@ -80,12 +64,14 @@ RCT_EXPORT_MODULE()
       [[self.bridge moduleForClass:[RCTModalManager class]] modalDismissed:modalHostView.identifier];
     }
   };
-  [viewController.presentingViewController dismissViewControllerAnimated:animated completion:completionBlock];
-}
 
-- (RCTShadowView *)shadowView
-{
-  return [RCTModalHostShadowViewImproved new];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (self.dismissalBlock) {
+      self.dismissalBlock([modalHostView reactViewController], viewController, animated, completionBlock);
+    } else {
+      [viewController.presentingViewController dismissViewControllerAnimated:animated completion:completionBlock];
+    }
+  });
 }
 
 - (void)invalidate

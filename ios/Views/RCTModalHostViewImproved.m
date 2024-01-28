@@ -48,20 +48,6 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
   [_modalViewController.view insertSubview:subview atIndex:0];
 }
 
-- (void)removeReactSubview:(UIView *)subview
-{
-  RCTAssert(subview == _reactSubview, @"Cannot remove view other than modal view");
-  // Superclass (category) removes the `subview` from actual `superview`.
-  [super removeReactSubview:subview];
-  [_touchHandler detachFromView:subview];
-  _reactSubview = nil;
-}
-
-- (void)didUpdateReactSubviews
-{
-  // Do nothing, as subview (singular) is managed by `insertReactSubview:atIndex:`
-}
-
 - (void)ensurePresentedOnlyIfNeeded
 {
   BOOL shouldBePresented = !_isPresented && super.visible && self.window;
@@ -127,4 +113,5 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 {
   return ![self.animationType isEqualToString:@"none"];
 }
+
 @end
