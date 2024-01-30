@@ -1,3 +1,9 @@
+/*
+ * @see https://github.com/fabriziobertoglio1987/react-native-improved
+ *
+ * @author Fabrizio Bertoglio https://github.com/fabriziobertoglio1987
+ */
+
 #import <React/RCTBaseTextInputShadowView.h>
 
 #import <React/RCTBridge.h>
