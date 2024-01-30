@@ -14,8 +14,8 @@ import com.facebook.react.views.text.ReactTextViewManagerCallback;
 import com.facebook.react.views.textinput.ReactEditText;
 import com.facebook.react.views.textinput.ReactTextInputManager;
 
-@ReactModule(name = ReactTextInputImprovedManager.NAME)
-public class ReactTextInputImprovedManager extends ReactTextInputManager {
+@ReactModule(name = ReactTextInputManagerImproved.NAME)
+public class ReactTextInputManagerImproved extends ReactTextInputManager {
   public static final String NAME = "RCTTextInputImproved";
   protected @Nullable ReactTextViewManagerCallback mReactTextViewManagerCallback;
 

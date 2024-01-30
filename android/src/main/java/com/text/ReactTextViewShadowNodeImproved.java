@@ -45,7 +45,7 @@ import com.facebook.yoga.YogaMeasureOutput;
 import com.facebook.yoga.YogaNode;
 import java.util.ArrayList;
 
-public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
+public class ReactTextViewShadowNodeImproved extends ReactTextShadowNode {
   // It's important to pass the ANTI_ALIAS_FLAG flag to the constructor rather than setting it
   // later by calling setFlags. This is because the latter approach triggers a bug on Android 4.4.2.
   // The bug is that unicode emoticons aren't measured properly which causes text to be clipped.
@@ -173,11 +173,11 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
         }
       };
 
-  public ReactTextViewImprovedShadowNode() {
+  public ReactTextViewShadowNodeImproved() {
     this(null);
   }
 
-  public ReactTextViewImprovedShadowNode(
+  public ReactTextViewShadowNodeImproved(
       @Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
     super(reactTextViewManagerCallback);
     initMeasureFunction();

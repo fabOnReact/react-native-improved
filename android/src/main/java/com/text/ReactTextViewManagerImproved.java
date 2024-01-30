@@ -15,8 +15,8 @@ import com.facebook.react.views.text.ReactTextView;
 import com.facebook.react.views.text.ReactTextViewManager;
 import com.facebook.react.views.text.ReactTextViewManagerCallback;
 
-@ReactModule(name = ReactTextViewImprovedManager.NAME)
-public class ReactTextViewImprovedManager extends ReactTextViewManager {
+@ReactModule(name = ReactTextViewManagerImproved.NAME)
+public class ReactTextViewManagerImproved extends ReactTextViewManager {
   public static final String NAME = "RCTTextImproved";
   protected @Nullable ReactTextViewManagerCallback mReactTextViewManagerCallback;
 
@@ -25,11 +25,11 @@ public class ReactTextViewImprovedManager extends ReactTextViewManager {
     return NAME;
   }
 
-  public ReactTextViewImprovedManager() {
+  public ReactTextViewManagerImproved() {
     this(null);
   }
 
-  public ReactTextViewImprovedManager(
+  public ReactTextViewManagerImproved(
       @Nullable ReactTextViewManagerCallback reactTextViewManagerCallback) {
     super(reactTextViewManagerCallback);
     mReactTextViewManagerCallback = reactTextViewManagerCallback;
@@ -42,7 +42,7 @@ public class ReactTextViewImprovedManager extends ReactTextViewManager {
 
   @Override
   public ReactTextShadowNode createShadowNodeInstance() {
-    return new ReactTextViewImprovedShadowNode(mReactTextViewManagerCallback);
+    return new ReactTextViewShadowNodeImproved(mReactTextViewManagerCallback);
   }
 
   @Override
