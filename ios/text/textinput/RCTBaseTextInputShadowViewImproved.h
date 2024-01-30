@@ -1,8 +1,7 @@
 /*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * @see https://github.com/fabriziobertoglio1987/react-native-improved
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * @author Fabrizio Bertoglio https://github.com/fabriziobertoglio1987
  */
 
 #import "RCTBaseTextShadowView.h"

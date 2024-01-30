@@ -1,4 +1,8 @@
-
+/*
+ * @see https://github.com/fabriziobertoglio1987/react-native-improved
+ *
+ * @author Fabrizio Bertoglio https://github.com/fabriziobertoglio1987
+ */
 package com.text;
 
 import com.facebook.react.ReactPackage;
