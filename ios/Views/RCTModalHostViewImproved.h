@@ -32,7 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
                     animated:(BOOL)animated;
 - (void)dismissModalHostViewWithCompletion:(RCTModalHostViewImproved *)modalHostView
                         withViewController:(RCTModalHostViewController *)viewController
-                                  animated:(BOOL)animated completion: (void (^)(void))completion;
+                                  animated:(BOOL)animated 
+                                completion: (void (^)(void))completion;
 
 @end
 

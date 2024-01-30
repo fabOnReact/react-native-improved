@@ -18,7 +18,7 @@
 @implementation RCTModalHostViewImproved {
   __weak RCTBridge *_bridge;
   BOOL _isPresented;
-  RCTModalHostViewController *_modalViewController;
+  RCTModalHostViewControllerImproved *_modalViewController;
   RCTTouchHandler *_touchHandler;
   UIView *_reactSubview;
   UIInterfaceOrientation _lastKnownOrientation;
@@ -31,12 +31,13 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 - (instancetype)initWithBridge:(RCTBridge *)bridge
 {
   self = [super initWithBridge:bridge];
-  _modalViewController = [RCTModalHostViewController new];
+  _modalViewController = [RCTModalHostViewControllerImproved new];
   UIView *containerView = [UIView new];
   containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   _modalViewController.view = containerView;
   _touchHandler = [[RCTTouchHandler alloc] initWithBridge:bridge];
   _isPresented = NO;
+  _modalViewController.modalHostView = self;
 
   return self;
 }
@@ -102,8 +103,16 @@ RCT_NOT_IMPLEMENTED(-(instancetype)initWithCoder : coder)
 
 - (void)dismissModalViewController
 {
+  [self dismissModalViewControllerWithCompletion: nil];
+}
+
+- (void)dismissModalViewControllerWithCompletion:(void (^)(void))completion
+{
   if (_isPresented) {
-    [self.delegate dismissModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
+    [self.delegate dismissModalHostViewWithCompletion:self 
+                                   withViewController:_modalViewController
+                                             animated:[self hasAnimationType]
+                                           completion: completion];
     _isPresented = NO;
   }
 }
