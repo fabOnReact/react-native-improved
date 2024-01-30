@@ -1,4 +1,4 @@
-package com.textexample
+package com.improvedexample
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
