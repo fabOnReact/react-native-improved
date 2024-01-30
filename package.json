@@ -29,7 +29,7 @@
     "react-native-patch": "src/patch.js"
   },
   "scripts": {
-    "example": "yarn workspace react-native-improved-example",
+    "example": "yarn workspace improvedexample",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
