@@ -12,7 +12,7 @@ import com.facebook.react.views.modal.ReactModalHostManager;
 
 /** View manager for {@link ReactModalHostView} components. */
 @ReactModule(name = ReactModalHostManager.REACT_CLASS)
-public class ReactModalHostManagerImproved extends ReactModalHostManager {
+public class ReactModalHostImprovedManager extends ReactModalHostManager {
 
   public static final String REACT_CLASS = "RCTModalHostViewImproved";
 

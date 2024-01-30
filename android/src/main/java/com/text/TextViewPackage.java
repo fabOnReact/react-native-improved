@@ -5,7 +5,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
-import com.modal.ReactModalHostManagerImproved;
+import com.modal.ReactModalHostImprovedManager;
 import com.textinput.ReactTextInputImprovedManager;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class TextViewPackage implements ReactPackage {
     List<ViewManager> viewManagers = new ArrayList<>();
     viewManagers.add(new ReactTextViewImprovedManager());
     viewManagers.add(new ReactTextInputImprovedManager());
-    viewManagers.add(new ReactModalHostManagerImproved());
+    viewManagers.add(new ReactModalHostImprovedManager());
     return viewManagers;
   }
 
