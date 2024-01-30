@@ -11,7 +11,7 @@
 #import "RCTModalManager.h"
 #import "RCTModalHostViewManager.h"
 
-@interface RCTModalHostViewImprovedManager () <RCTModalHostViewInteractorImproved>
+@interface RCTModalHostViewImprovedManager () <RCTModalHostViewImprovedInteractor>
 
 @end
 
