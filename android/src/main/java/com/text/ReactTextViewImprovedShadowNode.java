@@ -5,13 +5,21 @@
  */
 package com.text;
 
+import static android.text.Layout.BREAK_STRATEGY_HIGH_QUALITY;
+import static android.text.Layout.BREAK_STRATEGY_SIMPLE;
+import static android.text.Layout.HYPHENATION_FREQUENCY_NONE;
+
+import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.text.BoringLayout;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.Gravity;
 import androidx.annotation.Nullable;
 import com.facebook.infer.annotation.Assertions;
@@ -42,6 +50,9 @@ import com.facebook.yoga.YogaMeasureMode;
 import com.facebook.yoga.YogaMeasureOutput;
 import com.facebook.yoga.YogaNode;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
   // It's important to pass the ANTI_ALIAS_FLAG flag to the constructor rather than setting it
@@ -128,13 +139,17 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
           if (widthMode == YogaMeasureMode.EXACTLY) {
             layoutWidth = width;
           } else {
-            for (int lineIndex = 0; lineIndex < lineCount; lineIndex++) {
-              boolean endsWithNewLine =
-                  text.length() > 0 && text.charAt(layout.getLineEnd(lineIndex) - 1) == '\n';
-              float lineWidth =
-                  endsWithNewLine ? layout.getLineMax(lineIndex) : layout.getLineWidth(lineIndex);
-              if (lineWidth > layoutWidth) {
-                layoutWidth = lineWidth;
+            if (lineCount == 1) {
+              layoutWidth = (int) layout.getEllipsizedWidth();
+            } else {
+              for (int lineIndex = 0; lineIndex < lineCount; lineIndex++) {
+                boolean endsWithNewLine =
+                        text.length() > 0 && text.charAt(layout.getLineEnd(lineIndex) - 1) == '\n';
+                float lineWidth =
+                        endsWithNewLine ? layout.getLineMax(lineIndex) : layout.getLineWidth(lineIndex);
+                if (lineWidth > layoutWidth) {
+                  layoutWidth = lineWidth;
+                }
               }
             }
             if (widthMode == YogaMeasureMode.AT_MOST && layoutWidth > width) {
@@ -195,11 +210,6 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
     Layout layout;
     BoringLayout.Metrics boring = BoringLayout.isBoring(text, textPaint);
     float desiredWidth = boring == null ? Layout.getDesiredWidth(text, textPaint) : Float.NaN;
-    // StaticLayout#getLineWidth does not work with single-line text.
-    boolean overrideTextBreakStrategySingleLine =
-        boring == null
-            ? false
-            : mNumberOfLines == 1 && !mAdjustsFontSizeToFit && boring.width > width;
 
     // technically, width should never be negative, but there is currently a bug in
     boolean unconstrainedWidth = widthMode == YogaMeasureMode.UNDEFINED || width < 0;
@@ -240,7 +250,7 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
       layout = builder.build();
 
     } else if (boring != null
-        && (unconstrainedWidth || boring.width <= width || overrideTextBreakStrategySingleLine)) {
+        && (unconstrainedWidth || boring.width <= width)) {
       // Is used for single-line, boring text when the width is either unknown or bigger
       // than the width of the text.
       layout =
@@ -261,15 +271,13 @@ public class ReactTextViewImprovedShadowNode extends ReactTextShadowNode {
       if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
         width = (float) Math.ceil(width);
       }
-
-      StaticLayout.Builder builder =
-          StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, (int) width)
-              .setAlignment(alignment)
-              .setLineSpacing(0.f, 1.f)
-              .setIncludePad(mIncludeFontPadding)
-              .setBreakStrategy(mTextBreakStrategy)
-              .setHyphenationFrequency(mHyphenationFrequency);
-
+      StaticLayout.Builder  builder =
+                StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, (int) width)
+                        .setAlignment(alignment)
+                        .setLineSpacing(0.f, 1.f)
+                        .setIncludePad(mIncludeFontPadding)
+                        .setBreakStrategy(mTextBreakStrategy)
+                        .setHyphenationFrequency(mHyphenationFrequency);
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
         builder.setUseLineSpacingFromFallbacks(true);
       }
