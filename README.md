@@ -3,7 +3,7 @@
 
 - **Supports ONLY react-native 0.73**.
 - Supports only old architechture (new architechture is WIP)
-- Support for other versions will be added in the future ([#18](https://github.com/fabOnReact/react-native-improved/issues/18)).
+- Support for other versions will be added in the future ([#24](https://github.com/fabOnReact/react-native-improved/issues/24)).
 
 Provides different react-native iOS, Android and JS API fixes/PRs.
 
