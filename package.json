@@ -37,7 +37,8 @@
     "prepare": "bob build",
     "release": "release-it",
     "patch": "node src/patch.js",
-    "patch-dev": "node src/patch-dev.js"
+    "patch-dev": "node src/patch-dev.js",
+    "postinstall": "yarn patch-dev"
   },
   "keywords": [
     "react-native",
